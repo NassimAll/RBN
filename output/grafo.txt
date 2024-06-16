@@ -1,0 +1,60 @@
+gene: 0
+lista_ingressi(3): 13 1 8
+uscite(8): 1 0 1 1 1 0 1 0
+gene: 1
+lista_ingressi(1): 4
+uscite(2): 0 0
+gene: 2
+lista_ingressi(2): 17 4
+uscite(4): 1 1 1 1
+gene: 3
+lista_ingressi(2): 3 11
+uscite(4): 1 1 1 1
+gene: 4
+lista_ingressi(2): 16 8
+uscite(4): 1 1 1 1
+gene: 5
+lista_ingressi(3): 0 15 10
+uscite(8): 0 0 1 0 1 0 1 1
+gene: 6
+lista_ingressi(2): 2 10
+uscite(4): 1 1 1 1
+gene: 7
+lista_ingressi(2): 3 17
+uscite(4): 1 1 1 1
+gene: 8
+lista_ingressi(2): 9 14
+uscite(4): 1 1 1 1
+gene: 9
+lista_ingressi(1): 5
+uscite(2): 0 1
+gene: 10
+lista_ingressi(2): 2 19
+uscite(4): 1 1 1 1
+gene: 11
+lista_ingressi(1): 17
+uscite(2): 0 0
+gene: 12
+lista_ingressi(2): 16 7
+uscite(4): 1 1 1 1
+gene: 13
+lista_ingressi(2): 14 15
+uscite(4): 1 1 1 1
+gene: 14
+lista_ingressi(1): 19
+uscite(2): 0 0
+gene: 15
+lista_ingressi(2): 6 7
+uscite(4): 1 1 1 1
+gene: 16
+lista_ingressi(1): 13
+uscite(2): 0 0
+gene: 17
+lista_ingressi(1): 7
+uscite(2): 0 0
+gene: 18
+lista_ingressi(3): 17 2 0
+uscite(8): 0 0 1 0 0 1 0 1
+gene: 19
+lista_ingressi(1): 5
+uscite(2): 0 0
