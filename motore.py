@@ -73,7 +73,7 @@ def read_graph():
     return n_genes, adjacency_matrix, functions
 
 def read_init_conditions():
-    with open(file_path, 'r') as file:
+    with open(input_condInit, 'r') as file:
         lines = file.readlines()
     
     n_genes, n_cond = map(int, lines[0].strip().split()[1::2])
@@ -105,7 +105,7 @@ if __name__ == '__main__':
     results = []
     for initial_state in initial_conditions:
         rbn.set_initial_state(initial_state)
-        history = rbn.run(steps)
+        history = rbn.run(n_steps)
         results.append(history)
 
     # Print results
