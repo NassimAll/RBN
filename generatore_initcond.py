@@ -53,7 +53,6 @@ if __name__ == '__main__':
     # Lettura dei parametri dal file
     n_genes, n_cond, bias, seme, flag, mask = read_param()
 
-
     # Generazione delle condizioni iniziali
     condizioni_iniziali = gen_condizioni_iniziali(n_genes, n_cond, bias, seme, mask)
 

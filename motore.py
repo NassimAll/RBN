@@ -2,11 +2,13 @@ import numpy as np
 import json
 import os
 
+#Definizione file con dati in input
 input_motore =  os.getcwd() + "/input/input_motore.txt"
 input_grafo =  os.getcwd() + "/output/rete.json"
 input_condInit =  os.getcwd() + "/output/condizioni_iniziali.txt"
 output_dir = os.getcwd() + "/output/"
 
+#Oggetto che rappresenta la rete
 class RandomBooleanNetwork:
     def __init__(self, N, adjacency_matrix, functions):
         self.N = N  # Number of nodes
@@ -14,7 +16,7 @@ class RandomBooleanNetwork:
         self.functions = functions  # List of boolean functions for each node
         self.state = np.zeros(N, dtype=int)  # Initial state (to be set later)
     
-    def set_initial_state(self, initial_state):
+    def set_initial_state(self, initial_state): # Set initial state to the network
         self.state = np.array(initial_state)
     
     def _update_node(self, node):
@@ -36,14 +38,14 @@ class RandomBooleanNetwork:
             history.append(self.state.copy())
         return history
     
-    def print_network(self):
+    def print_network(self):    # print network info
         print("Adjacency Matrix:")
         print(self.adjacency_matrix)
         print("\nBoolean Functions:")
         for i, func in enumerate(self.functions):
             print(f"Node {i}: {func}")
 
-#Leggiamo i parametri del motore
+#Reading from file motore parameters, n_step - mode - finamx
 def read_param():
     parametri = {}
     with open(input_motore, 'r') as file:
@@ -53,7 +55,7 @@ def read_param():
                 parametri[key.strip()] = value.strip()
     return parametri
 
-#Carichiamo il grafo 
+#Reading graph from json 
 def read_graph():
     with open(input_grafo, 'r') as file:
         data = json.load(file)
@@ -72,6 +74,7 @@ def read_graph():
     
     return n_genes, adjacency_matrix, functions
 
+#Reading the set of initial conditions
 def read_init_conditions():
     with open(input_condInit, 'r') as file:
         lines = file.readlines()
@@ -84,12 +87,13 @@ def read_init_conditions():
 
 if __name__ == '__main__':
     
-    # Lettura dei parametri del motore
+    # read param of motore
     parametri = read_param()
 
-   # Conversione dei parametri letti dal file al tipo corretto
+    # Conversione dei parametri letti dal file al tipo corretto
     n_steps = int(parametri['n_steps'])
     mode = int(parametri['mode'])
+    print(mode)
     fin_max = int(parametri['finmax'])
 
     n_genes, adjacency_matrix, functions = read_graph()
@@ -105,13 +109,21 @@ if __name__ == '__main__':
     results = []
     for initial_state in initial_conditions:
         rbn.set_initial_state(initial_state)
-        history = rbn.run(n_steps)
-        results.append(history)
+        if mode == 1:
+            break
+        elif mode == 2:
+            history = rbn.run(n_steps)
+            results.append(history)
+        elif mode == 3:
+            break
 
     # Print results
-    for i, (initial_state, history) in enumerate(zip(initial_conditions, results)):
-        print(f"\nInitial condition {i + 1}: {initial_state}")
-        for step, state in enumerate(history):
-            print(f" Step {step}: {state}")
+    with open(os.path.join(output_dir, "output_motore"), 'w') as file:
+        for i, (initial_state, history) in enumerate(zip(initial_conditions, results)):
+            print(f"\nInitial condition {i + 1}: {initial_state}")
+            file.write(f"\nInitial condition {i + 1}: {initial_state}\n")
+            for step, state in enumerate(history):
+                print(f" Step {step}: {state}")
+                file.write(f"\nStep {step}: {state}")
 
 
