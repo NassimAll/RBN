@@ -87,7 +87,7 @@ def read_init_conditions():
 
 if __name__ == '__main__':
     
-    # read param of motore
+    # Carichiamo i parametri del motore
     parametri = read_param()
 
     # Conversione dei parametri letti dal file al tipo corretto
@@ -95,7 +95,7 @@ if __name__ == '__main__':
     mode = int(parametri['mode'])
     print(mode)
     fin_max = int(parametri['finmax'])
-
+    
     n_genes, adjacency_matrix, functions = read_graph()
     rbn = RandomBooleanNetwork(n_genes, adjacency_matrix, functions)
 
