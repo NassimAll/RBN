@@ -2,7 +2,7 @@ n_nodi: 20
 
 k_minimo:  2
 k_massimo: 2
-probabilità_k: 1.0
+probabilita_k: 1.0
 
 bias per ogni k: 0.5
 

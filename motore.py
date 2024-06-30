@@ -118,7 +118,7 @@ if __name__ == '__main__':
             break
 
     # Print results
-    with open(os.path.join(output_dir, "output_motore"), 'w') as file:
+    with open(os.path.join(output_dir, "output_motore.txt"), 'w') as file:
         for i, (initial_state, history) in enumerate(zip(initial_conditions, results)):
             print(f"\nInitial condition {i + 1}: {initial_state}")
             file.write(f"\nInitial condition {i + 1}: {initial_state}\n")

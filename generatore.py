@@ -69,7 +69,7 @@ if __name__ == '__main__':
     n_nodi = int(parametri['n_nodi'])
     k_minimo = int(parametri['k_minimo'])
     k_massimo = int(parametri['k_massimo'])
-    probabilita_k = list(map(float, parametri['probabilità_k'].split()))
+    probabilita_k = list(map(float, parametri['probabilita_k'].split()))
     bias = list(map(float, parametri['bias per ogni k'].split()))
     seme = int(parametri['seme'])
 
