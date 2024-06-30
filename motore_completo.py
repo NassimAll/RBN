@@ -80,9 +80,12 @@ if __name__ == "__main__":
     results = simulate_rbn(network, initial_conditions, steps)
     
     # Print the results
-    for i, result in enumerate(results):
-        print(f"Initial condition {i+1}: {initial_conditions[i]}")
-        for step, state in enumerate(result):
-            print(f" Step {step}: {state}")
-        print()
+    with open(os.path.join(output_dir, "output_motore.txt"), 'w') as file:
+        for i, result in enumerate(results):
+            print(f"Initial condition {i+1}: {initial_conditions[i]}")
+            file.write(f"Initial condition {i+1}: {initial_conditions[i]}\n")
+            for step, state in enumerate(result):
+                print(f" Step {step}: {state}")
+                file.write(f" Step {step}: {state}\n")
+            print()
 
