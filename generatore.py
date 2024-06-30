@@ -49,9 +49,10 @@ def write_on_json(rete, file_output):
     with open(file_output, 'w') as file:
         json.dump(rete, file, indent=4)
 
-def write_output(rete, file_output):
+def write_output(rete, n_nodi, file_output):
     with open(file_output, 'w') as file:
         for nodo in rete:
+            file.write(f"n_genes: {n_nodi}\n")
             print(f"gene: {nodo}")
             file.write(f"gene: {nodo}\n")
             print(f"lista_ingressi({len(rete[nodo]["ingressi"])}): {' '.join(map(str, rete[nodo]["ingressi"]))}")
@@ -69,7 +70,7 @@ if __name__ == '__main__':
     n_nodi = int(parametri['n_nodi'])
     k_minimo = int(parametri['k_minimo'])
     k_massimo = int(parametri['k_massimo'])
-    probabilita_k = list(map(float, parametri['probabilità_k'].split()))
+    probabilita_k = list(map(float, parametri['probabilita_k'].split()))
     bias = list(map(float, parametri['bias per ogni k'].split()))
     seme = int(parametri['seme'])
 
@@ -80,4 +81,4 @@ if __name__ == '__main__':
     write_on_json(rete, output_dir+'rete.json')
 
     # Scrittura della rete su stdout e text
-    write_output(rete, output_dir+'grafo.txt')
+    write_output(rete, n_nodi, output_dir+'grafo.txt')
