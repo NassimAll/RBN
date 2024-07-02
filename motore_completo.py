@@ -17,20 +17,51 @@ def load_rete():
 #Costruisco il binario dagli input e lo trasformo nell'indice che mi rappresenta il suo out
 # inputs --> 0 1 --> 01 --> index = 1 --> outputs[1]
 # inputs --> 1 1 --> 11 --> index = 3 --> outputs[3]
-
 def boolean_function_output(inputs, outputs):
     index = int(''.join(map(str, inputs)), 2)
     return outputs[index]
 
-def simulate_rbn(network, initial_conditions, steps):
+# Funzione per convertire un array numpy in una stringa binaria
+def array_to_binary_string(arr):
+    return ''.join(str(x) for x in arr)
+
+def detect_attractor(traiettoria, fin_max):
+    stati_to_index = {}
+    trai_len = len(traiettoria)
+    # Iniziamo a risalire la traiettoria dall'ultimo stato
+    for index in range(trai_len - 1, max(trai_len - fin_max - 1, -1), -1):
+        stato = tuple(traiettoria[index])
+        
+        if stato in stati_to_index:
+            first_occurrence = stati_to_index[stato]
+            periodo = index - first_occurrence
+
+             # Calcoliamo il nome dell'attrattore trovando lo stato con il valore decimale massimo
+            period_states = traiettoria[index:(first_occurrence + index)]
+            print("sus")
+            #print(period_states)
+            # Convertiamo ogni array in una stringa binaria
+            lista_stringhe_binarie = [array_to_binary_string(arr) for arr in period_states]
+            max_state = max(lista_stringhe_binarie)
+
+            return tuple(max_state), abs(periodo), (first_occurrence - abs(periodo))
+        
+        stati_to_index[stato] = index
+        
+    return None, None, None
+
+def simulate_rbn(network, initial_conditions, steps, mode, fin_max):
     n_genes = len(network)
     results = []
-    
+    attrattori = []
+
+
     for initial in initial_conditions:
         state = np.array(initial) #Carico lo stato iniziale
         traiettoria = [state.copy()] #inizializzo la traiettoria al primo stato
-        
-        for _ in range(steps):
+        trovato = False
+
+        for step in range(steps):
             new_state = state.copy() # stato successivo
             for node, info in network.items(): # Calcolo lo stato per ogni singolo nodo
                 node = int(node)
@@ -40,8 +71,23 @@ def simulate_rbn(network, initial_conditions, steps):
                 new_state[node] = boolean_function_output(inputs, uscite) # funzione per calcolare il valore dell'uscita
             state = new_state # salvo il nuovo stato 
             traiettoria.append(state.copy())
+
+            if mode == 3:
+                if np.array_equal(state, traiettoria[-2]): #prima controllo che non sia gia presente prima 
+                    attrattori.append((state.copy(), 1, step))
+                    trovato = True
+                else: # poi controllo l'attrattore ciclico
+                    attractor, period, passo = detect_attractor(traiettoria, fin_max)
+                    if attractor:
+                        attrattori.append((attractor, period, passo))
+                        trovato = True
+            
+            if trovato:
+                results.append(traiettoria)
+                break
         results.append(traiettoria)
-    return results
+    
+    return results, attrattori
 
 
 #Reading from file motore parameters, n_step - mode - finamx
@@ -84,8 +130,11 @@ def print_result_mode_2(results, initial_conditions):
             #print()
 
 
-def print_result_mode_3(results, initial_conditions):
-    #TO DO
+def print_result_mode_3(initial_condition, attrattori):
+
+    print("Detected attractors:")
+    for attractor, period, step in attrattori:
+        print(f"Attractor: {attractor}, Period: {period}, Step: {step}")
     return
 
 if __name__ == "__main__":
@@ -105,14 +154,14 @@ if __name__ == "__main__":
 
     # Eseguo la simulazione
     #steps = 10
-    results = simulate_rbn(network, initial_conditions, n_steps)
+    results, attrattori = simulate_rbn(network, initial_conditions, n_steps, mode, fin_max)
     
     if mode == 1:
         print_result_mode_1(results, initial_conditions)
     elif mode == 2:
         print_result_mode_2(results, initial_conditions)
     elif mode == 3:
-        print_result_mode_3(results)
+        print_result_mode_3(initial_conditions, attrattori)
 
     # # Print the results
     # with open(os.path.join(output_dir, "output_motore.txt"), 'w') as file:
