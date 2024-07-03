@@ -51,8 +51,8 @@ def write_on_json(rete, file_output):
 
 def write_output(rete, n_nodi, file_output):
     with open(file_output, 'w') as file:
+        file.write(f"n_genes: {n_nodi}\n")
         for nodo in rete:
-            file.write(f"n_genes: {n_nodi}\n")
             print(f"gene: {nodo}")
             file.write(f"gene: {nodo}\n")
             print(f"lista_ingressi({len(rete[nodo]["ingressi"])}): {' '.join(map(str, rete[nodo]["ingressi"]))}")
