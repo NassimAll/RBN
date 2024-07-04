@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Initial condition 1: 1 1 0 0 1 0 1 0 0 1 1 1 0 1 1 0 1 1 1 1
  Step 0: 1 1 0 0 1 0 1 0 0 1 1 1 0 1 1 0 1 1 1 1
  Step 1: 1 1 1 0 0 0 0 1 0 1 1 1 1 0 0 0 0 0 0 1
@@ -30298,3 +30299,105 @@ Initial condition 150: 0 0 1 1 0 0 1 1 0 0 0 1 1 0 0 1 0 0 0 0
  Step 198: 1 1 1 1 0 0 0 1 1 1 0 0 1 0 0 0 1 1 1 0
  Step 199: 1 0 1 1 0 0 0 1 1 1 0 0 0 0 1 0 1 1 1 0
  Step 200: 1 0 1 0 0 0 0 1 1 1 0 0 0 1 1 0 1 1 1 0
+=======
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 26
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 18
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 55
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 37
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 25
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 28
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 14
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 25
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 32
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 4
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 35
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 43
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 25
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 37
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 21
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 20
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 10
+Attrattore: 1 0 1 0 1 1 1 0 1 0 0 1 1 0 0 0 1 0 0 0, Periodo: 4, Step: 3
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 14
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 25
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 24
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 57
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 33
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 22
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 36
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 44
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 38
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 42
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 39
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 16
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 55
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 47
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 4
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 5
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 43
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 35
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 53
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 36
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 14
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 41
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 44
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 47
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 29
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 60
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 3
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 38
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 17
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 32
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 22
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 58
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 51
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 57
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 63
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 55
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 60
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 28
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 30
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 35
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 22
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 49
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 31
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 45
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 35
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 43
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 10
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 28
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 34
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 27
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 15
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 33
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 37
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 56
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 45
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 60
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 30
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 60
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 58
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 31
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 40
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 27
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 53
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 32
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 15
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 78
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 6
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 9
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 31
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 21
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 53
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 31
+Attrattore: 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 0 1 0 0 0, Periodo: 17, Step: 7
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 28
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 38
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 41
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 62
+Attrattore: 1 0 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1, Periodo: 8, Step: 14
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 28
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 30
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 57
+Attrattore: 1 1 0 1 1 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0, Periodo: 2, Step: 27
+>>>>>>> 3ab1938e506732f94001b4ae8f7816bf5dbe3185
