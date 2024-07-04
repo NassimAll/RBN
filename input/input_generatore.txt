@@ -1,10 +1,10 @@
 n_nodi: 20
 
 k_minimo:  2
-k_massimo: 2
-probabilita_k: 1.0
+k_massimo: 4
+probabilita_k: 0.4 0.4 0.2
 
-bias per ogni k: 0.5
+bias per ogni k: 0.5 0.5 0.5 
 
 
 seme: 0
