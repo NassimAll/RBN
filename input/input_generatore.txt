@@ -1,17 +1,10 @@
 n_nodi: 20
 
 k_minimo:  2
-<<<<<<< HEAD
-k_massimo: 3
-probabilita_k: 0.7 0.3
-
-bias per ogni k: 0.5 0.6
-=======
 k_massimo: 4
 probabilita_k: 0.4 0.4 0.2
 
 bias per ogni k: 0.5 0.5 0.5 
->>>>>>> 3ab1938e506732f94001b4ae8f7816bf5dbe3185
 
 
 seme: 0

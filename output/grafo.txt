@@ -1,66 +1,5 @@
 n_genes: 20
 gene: 0
-<<<<<<< HEAD
-lista_ingressi(3): 13 1 8
-uscite(8): 1 1 1 1 1 0 1 0
-gene: 1
-lista_ingressi(2): 4 3
-uscite(4): 1 0 1 1
-gene: 2
-lista_ingressi(3): 4 9 3
-uscite(8): 1 1 1 1 0 1 1 1
-gene: 3
-lista_ingressi(3): 15 14 16
-uscite(8): 0 1 1 0 1 0 1 1
-gene: 4
-lista_ingressi(2): 15 10
-uscite(4): 0 0 1 0
-gene: 5
-lista_ingressi(2): 7 4
-uscite(4): 1 0 0 0
-gene: 6
-lista_ingressi(2): 15 3
-uscite(4): 0 0 0 0
-gene: 7
-lista_ingressi(3): 6 17 9
-uscite(8): 1 1 0 1 0 0 0 1
-gene: 8
-lista_ingressi(2): 15 2
-uscite(4): 0 1 1 1
-gene: 9
-lista_ingressi(3): 17 12 16
-uscite(8): 0 1 1 1 1 1 1 1
-gene: 10
-lista_ingressi(2): 11 2
-uscite(4): 0 0 1 0
-gene: 11
-lista_ingressi(2): 0 8
-uscite(4): 0 0 1 0
-gene: 12
-lista_ingressi(3): 3 4 7
-uscite(8): 0 1 1 1 1 0 1 1
-gene: 13
-lista_ingressi(2): 12 2
-uscite(4): 0 1 0 0
-gene: 14
-lista_ingressi(3): 5 3 15
-uscite(8): 0 1 1 0 1 0 0 0
-gene: 15
-lista_ingressi(2): 11 13
-uscite(4): 0 1 0 0
-gene: 16
-lista_ingressi(3): 6 8 11
-uscite(8): 1 1 1 1 1 0 1 1
-gene: 17
-lista_ingressi(2): 5 10
-uscite(4): 1 0 1 1
-gene: 18
-lista_ingressi(2): 13 18
-uscite(4): 1 1 1 0
-gene: 19
-lista_ingressi(2): 4 17
-uscite(4): 1 0 0 1
-=======
 lista_ingressi(4): 13 1 8 16
 uscite(16): 0 1 1 1 0 1 0 0 0 0 1 1 1 1 1 0
 gene: 1
@@ -120,4 +59,3 @@ uscite(4): 0 0 0 0
 gene: 19
 lista_ingressi(2): 2 10
 uscite(4): 1 0 0 0
->>>>>>> 3ab1938e506732f94001b4ae8f7816bf5dbe3185

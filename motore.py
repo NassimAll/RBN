@@ -33,7 +33,7 @@ def load_rete_from_text():
             'uscite': output_values
         }
     
-    return network
+    return network, n_genes
 
 #Load da json, più veloce
 def load_rete():
@@ -79,44 +79,63 @@ def detect_attractor(traiettoria, fin_max):
     return None, None, None
 
 #Avvia la simulazione per ogni cond init
-def simulate_rbn(network, initial_conditions, steps, mode, fin_max):
-    #n_genes = len(network)
-    results = []
-    attrattori = []
+def simulate_rbn(network, initial_cond, steps):
+    state = np.array(initial_cond) #Carico lo stato iniziale
+    traiettoria = [state.copy()] #inizializzo la traiettoria al primo stato
 
-
-    for initial in initial_conditions:
-        state = np.array(initial) #Carico lo stato iniziale
-        traiettoria = [state.copy()] #inizializzo la traiettoria al primo stato
-        trovato = False
-
-        for step in range(steps):
-            new_state = state.copy() # stato successivo
-            for node, info in network.items(): # Calcolo lo stato per ogni singolo nodo
-                node = int(node)
-                ingressi = info['ingressi'] # nodi in ingresso
-                uscite = info['uscite'] # tabella delle uscite
-                inputs = [state[i] for i in ingressi] # carico il valore degli ingressi nel nodo, in ordine
-                new_state[node] = boolean_function_output(inputs, uscite) # funzione per calcolare il valore dell'uscita
-            state = new_state # salvo il nuovo stato 
-            traiettoria.append(state.copy())
-
-            if mode == 3:
-                if np.array_equal(state, traiettoria[-2]): #prima controllo che non sia gia presente prima 
-                    attrattori.append((state.copy(), 1, step))
-                    trovato = True
-                else: # poi controllo l'attrattore ciclico
-                    attractor, period, passo = detect_attractor(traiettoria, fin_max)
-                    if attractor:
-                        attrattori.append((attractor, period, passo))
-                        trovato = True
-            
-            if trovato:
-                results.append(traiettoria)
-                break
-        results.append(traiettoria)
+    for _ in range(steps):
+        new_state = state.copy() # stato successivo
+        for node, info in network.items(): # Calcolo lo stato per ogni singolo nodo
+            node = int(node)
+            ingressi = info['ingressi'] # nodi in ingresso
+            uscite = info['uscite'] # tabella delle uscite
+            inputs = [state[i] for i in ingressi] # carico il valore degli ingressi nel nodo, in ordine
+            new_state[node] = boolean_function_output(inputs, uscite) # funzione per calcolare il valore dell'uscita
+        state = new_state # salvo il nuovo stato 
+        traiettoria.append(state.copy())
     
-    return results, attrattori
+    return traiettoria
+
+def simulate_mode_3(network, initial_cond, steps, fin_max):
+    
+    state = np.array(initial_cond) #Carico lo stato iniziale
+    traiettoria = [state.copy()] #inizializzo la traiettoria al primo stato
+
+    for step in range(steps): # Inizio la simulazione
+        new_state = state.copy() # stato successivo
+        for node, info in network.items(): # Calcolo lo stato per ogni singolo nodo
+            node = int(node)
+            ingressi = info['ingressi'] # nodi in ingresso
+            uscite = info['uscite'] # tabella delle uscite
+            inputs = [state[i] for i in ingressi] # carico il valore degli ingressi nel nodo, in ordine
+            new_state[node] = boolean_function_output(inputs, uscite) # funzione per calcolare il valore dell'uscita
+        state = new_state # salvo il nuovo stato 
+        traiettoria.append(state.copy())
+
+        if np.array_equal(state, traiettoria[-2]): #prima controllo che non sia gia presente prima 
+            attrattore = (state.copy(), 1, step)
+            return attrattore
+        else: # poi controllo l'attrattore ciclico
+            attractor, period, passo = detect_attractor(traiettoria, fin_max)
+            if attractor:
+                attrattore = (attractor, period, passo)
+                return attrattore
+        
+    return None
+
+def start_simulation_mode_3(network, initial_conditions, steps, fin_max):
+    attrattori = []
+    for initial in initial_conditions:
+        attrattori.append(simulate_mode_3(network, initial, steps, fin_max))
+    
+    return attrattori
+
+def start_simulation_normal(network, initial_conditions, steps):
+    results = []
+    for initial in initial_conditions:
+        results.append(simulate_rbn(network, initial, steps))
+    
+    return results
 
 
 #Reading from file motore parameters, n_step - mode - finamx
@@ -161,11 +180,12 @@ def print_result_mode_2(results, initial_conditions):
             #print()
 
 
-def print_result_mode_3(attrattori):
+def print_result_mode_3(attrattori, n_genes, n_cond):
     print("Detected attractors:")
     with open(os.path.join(output_dir, "output_motore.txt"), 'w') as file:
+        file.write(f'n_genes: {n_genes} n_cond: {n_cond}\n')
         for attractor, period, step in attrattori:
-            file.write(f"Attrattore: {' '.join(str(x) for x in attractor)}, Periodo: {period}, Step: {step}\n")
+            file.write(f"{' '.join(str(x) for x in attractor)} \t{period} \t{step}\n")
             print(f"Attractor: {' '.join(str(x) for x in attractor)}, Period: {period}, Step: {step}")
 
 
@@ -183,16 +203,17 @@ if __name__ == "__main__":
     
     # Carichiamo la rete e la sequenza di ocndizioni iniziali
     #network = load_rete()
-    network = load_rete_from_text()
+    network, n_genes = load_rete_from_text()
     initial_conditions, n_cond = read_init_conditions()
-
-    results, attrattori = simulate_rbn(network, initial_conditions, n_steps, mode, fin_max)
     
     if mode == 1:
+        results = start_simulation_normal(network, initial_conditions, n_steps)
         print_result_mode_1(results, initial_conditions)
     elif mode == 2:
+        results = start_simulation_normal(network, initial_conditions, n_steps)
         print_result_mode_2(results, initial_conditions)
     elif mode == 3:
-        print_result_mode_3(attrattori)
+        attrattori = start_simulation_mode_3(network, initial_conditions, n_steps, fin_max)
+        print_result_mode_3(attrattori, n_genes, n_cond)
 
 
