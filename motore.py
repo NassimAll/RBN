@@ -143,8 +143,9 @@ def print_result_mode_1(results, initial_conditions):
      # Print the results
     with open(os.path.join(output_dir, "output_motore.txt"), 'w') as file:
         for i, result in enumerate(results):
-            file.write(f"Initial condition {i+1}: {' '.join(str(x) for x in initial_conditions[i])}\n")
-            file.write(f" Last step : {' '.join(str(x) for x in result[-1])}\n")
+            #file.write(f"Initial condition {i+1}: {' '.join(str(x) for x in initial_conditions[i])}\n")
+            #file.write(f" Last step : {' '.join(str(x) for x in result[-1])}\n")
+            file.write(f"{' '.join(str(x) for x in result[-1])}\n")
             #print()
 
 def print_result_mode_2(results, initial_conditions):
@@ -152,15 +153,15 @@ def print_result_mode_2(results, initial_conditions):
     with open(os.path.join(output_dir, "output_motore.txt"), 'w') as file:
         for i, result in enumerate(results):
             #print(f"Initial condition {i+1}: {initial_conditions[i]}")
-            file.write(f"Initial condition {i+1}: {' '.join(str(x) for x in initial_conditions[i])}\n")
+            #file.write(f"Initial condition {i+1}: {' '.join(str(x) for x in initial_conditions[i])}\n")
+            #file.write(f"Initial condition {i+1}: {' '.join(str(x) for x in initial_conditions[i])}\n")
             for step, state in enumerate(result):
                 #print(f" Step {step}: {state}")
-                file.write(f" Step {step}: {' '.join(str(x) for x in state)}\n")
+                file.write(f"{' '.join(str(x) for x in state)}\n")
             #print()
 
 
 def print_result_mode_3(attrattori):
-
     print("Detected attractors:")
     with open(os.path.join(output_dir, "output_motore.txt"), 'w') as file:
         for attractor, period, step in attrattori:
