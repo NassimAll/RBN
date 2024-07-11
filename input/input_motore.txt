@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-n_steps: 200
-mode: 2
-finmax: 150
-=======
-n_steps: 100
+n_steps: 150
 mode: 3
 finmax: 50
->>>>>>> 3ab1938e506732f94001b4ae8f7816bf5dbe3185
