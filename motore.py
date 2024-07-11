@@ -94,8 +94,9 @@ def simulate_rbn(network, initial_cond, steps):
         state = new_state # salvo il nuovo stato 
         traiettoria.append(state.copy())
     
-    return traiettoria
+    return traiettoria #Restituisce la traiettoria ottenuta
 
+#Effettua la simulazione in modalità 3, rilevando gli attrattori per ogni traiettoria
 def simulate_mode_3(network, initial_cond, steps, fin_max):
     
     state = np.array(initial_cond) #Carico lo stato iniziale
@@ -112,7 +113,7 @@ def simulate_mode_3(network, initial_cond, steps, fin_max):
         state = new_state # salvo il nuovo stato 
         traiettoria.append(state.copy())
 
-        if np.array_equal(state, traiettoria[-2]): #prima controllo che non sia gia presente prima 
+        if np.array_equal(state, traiettoria[-2]): #Controllo che non sia un attrattore continuo 
             attrattore = (state.copy(), 1, step)
             return attrattore
         else: # poi controllo l'attrattore ciclico
@@ -123,6 +124,8 @@ def simulate_mode_3(network, initial_cond, steps, fin_max):
         
     return None
 
+#Inizia la simulazione in mode 3 e chiama la funzione di simulazione per ogni init cond
+#Return @listaAttrattori
 def start_simulation_mode_3(network, initial_conditions, steps, fin_max):
     attrattori = []
     for initial in initial_conditions:
@@ -130,6 +133,8 @@ def start_simulation_mode_3(network, initial_conditions, steps, fin_max):
     
     return attrattori
 
+#Inizia la simulazione e chiama la funzione di simulazione per ogni init cond
+#Return @Lista traiettorie
 def start_simulation_normal(network, initial_conditions, steps):
     results = []
     for initial in initial_conditions:
@@ -158,7 +163,7 @@ def read_init_conditions():
     
     return initial_conditions, n_cond
 
-def print_result_mode_1(results, initial_conditions):
+def print_result_mode_1(results):
      # Print the results
     with open(os.path.join(output_dir, "output_motore.txt"), 'w') as file:
         for i, result in enumerate(results):
@@ -167,7 +172,7 @@ def print_result_mode_1(results, initial_conditions):
             file.write(f"{' '.join(str(x) for x in result[-1])}\n")
             #print()
 
-def print_result_mode_2(results, initial_conditions):
+def print_result_mode_2(results):
      # Print the results
     with open(os.path.join(output_dir, "output_motore.txt"), 'w') as file:
         for i, result in enumerate(results):
@@ -208,10 +213,10 @@ if __name__ == "__main__":
     
     if mode == 1:
         results = start_simulation_normal(network, initial_conditions, n_steps)
-        print_result_mode_1(results, initial_conditions)
+        print_result_mode_1(results)
     elif mode == 2:
         results = start_simulation_normal(network, initial_conditions, n_steps)
-        print_result_mode_2(results, initial_conditions)
+        print_result_mode_2(results)
     elif mode == 3:
         attrattori = start_simulation_mode_3(network, initial_conditions, n_steps, fin_max)
         print_result_mode_3(attrattori, n_genes, n_cond)
