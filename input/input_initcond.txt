@@ -1,6 +1,0 @@
-n_genes: 20
-n_cond: 150
-bias: 0.5
-seme: 0
-maschera: 1
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2

@@ -3,8 +3,10 @@ import json
 import os
 import numpy as np
 
-input_file =  os.getcwd() + "/input/input_generatore.txt"
-output_dir = os.getcwd() + "/output/"
+input_file =  os.getcwd() + "/input_generatore.txt"
+output_txt = os.getcwd() + "/grafo.txt"
+output_json = os.getcwd() + "/rete.json"
+
 
 #Leggiamo i parametri in input dal file
 def read_param():
@@ -78,7 +80,7 @@ if __name__ == '__main__':
     rete = generate_RBN(n_nodi, k_minimo, k_massimo, probabilita_k, bias, seme)
 
     # Scrittura della rete su json
-    write_on_json(rete, output_dir+'rete.json')
+    write_on_json(rete, output_json)
 
     # Scrittura della rete su stdout e text
-    write_output(rete, n_nodi, output_dir+'grafo.txt')
+    write_output(rete, n_nodi, output_txt)

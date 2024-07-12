@@ -2,8 +2,8 @@
 #import shutil
 import os
 
-out_motore = os.path.join(os.getcwd() + "/output/output_motore.txt")
-out_rapporto = os.path.join(os.getcwd() + "/output/output_motore_rapporto.txt")
+out_motore = os.path.join(os.getcwd() + "/output_motore.txt")
+out_rapporto = os.path.join(os.getcwd() + "/output_motore_rapporto.txt")
 
 
 """File per trovare attrattori"""

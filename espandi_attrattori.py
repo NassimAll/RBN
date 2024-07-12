@@ -3,9 +3,9 @@ import numpy as np
 from motore import simulate_rbn, load_rete_from_text
 
 #Definizione file con dati in input
-input_attrattori =  os.getcwd() + "/output/output_motore_rapporto.txt"
-input_grafo_txt =  os.getcwd() + "/output/grafo.txt"
-output_dir = os.getcwd() + "/output/"
+input_attrattori =  os.getcwd() + "/output_motore_rapporto.txt"
+input_grafo_txt =  os.getcwd() + "/grafo.txt"
+output_file = os.getcwd() + "/attrattori_espansi.txt"
 
 
 #Reading the set of initial conditions
@@ -41,7 +41,7 @@ def expand_attractors(attractors):
 
 def write_results(results, n_genes, n_cond):
      # Print the results
-    with open(os.path.join(output_dir, "attrattori_espansi.txt"), 'w') as file:
+    with open(output_file, 'w') as file:
         file.write(f'n_genes: {n_genes} n_cond: {n_cond}\n')
         for result in results:
             #print(result)

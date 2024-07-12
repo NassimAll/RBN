@@ -1,8 +1,8 @@
 import random
 import os
 
-input_file =  os.getcwd() + "/input/input_initcond.txt"
-output_dir = os.getcwd() + "/output/"
+input_file =  os.getcwd() + "/input_initcond.txt"
+output_file = os.getcwd() + "/condizioni_iniziali.txt"
 
 #Leggiamo i parametri in input dal file
 def read_param():
@@ -41,8 +41,8 @@ def gen_condizioni_iniziali(n_genes, n_cond, bias, seme, maschera):
     
     return condizioni
 
-def write_out(condizioni, out_file, n_genes, n_cond):
-    with open(out_file, 'w') as file:
+def write_out(condizioni, n_genes, n_cond):
+    with open(output_file, 'w') as file:
         file.write(f"n_genes: {n_genes} n_cond: {n_cond}\n")
         for condizione in condizioni:
             file.write(' '.join(map(str, condizione)) + '\n')
@@ -57,4 +57,4 @@ if __name__ == '__main__':
     condizioni_iniziali = gen_condizioni_iniziali(n_genes, n_cond, bias, seme, mask)
 
     # Scrittura delle condizioni su file
-    write_out(condizioni_iniziali, (output_dir+'condizioni_iniziali.txt'), n_genes, n_cond)
+    write_out(condizioni_iniziali, n_genes, n_cond)

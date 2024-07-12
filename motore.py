@@ -3,11 +3,11 @@ import os
 import numpy as np
 
 #Definizione file con dati in input
-input_motore =  os.getcwd() + "/input/input_motore.txt"
-input_grafo =  os.getcwd() + "/output/rete.json"
-input_grafo_txt =  os.getcwd() + "/output/grafo.txt"
-input_condInit =  os.getcwd() + "/output/condizioni_iniziali.txt"
-output_dir = os.getcwd() + "/output/"
+input_motore =  os.getcwd() + "/input_motore.txt"
+input_grafo =  os.getcwd() + "/rete.json"
+input_grafo_txt =  os.getcwd() + "/grafo.txt"
+input_condInit =  os.getcwd() + "/condizioni_iniziali.txt"
+output_dir = os.getcwd() + "/"
 
 #load da file di testo
 def load_rete_from_text():
