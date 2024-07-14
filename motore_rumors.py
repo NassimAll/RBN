@@ -1,10 +1,12 @@
+#VERSIONE DEL MOTORE CHE TIENE CONTO DEL RUMORE AL MOMENTO DELLA SIMULAZIONE
+
 import json
 import os
 import numpy as np
+import random
 
 #Definizione file con dati in input
-input_motore =  os.getcwd() + "/input_motore.txt"
-input_grafo =  os.getcwd() + "/rete.json"
+input_motore =  os.getcwd() + "/input_motore_rumors.txt"
 input_grafo_txt =  os.getcwd() + "/grafo.txt"
 input_condInit =  os.getcwd() + "/condizioni_iniziali.txt"
 output_dir = os.getcwd() + "/"
@@ -34,12 +36,6 @@ def load_rete_from_text():
         }
     
     return network, n_genes
-
-#Load da json, più veloce
-def load_rete():
-    with open(input_grafo, 'r') as f:
-        network = json.load(f)
-    return network
 
 #Costruisco il binario dagli input e lo trasformo nell'indice che mi rappresenta il suo out
 # inputs --> 0 1 --> 01 --> index = 1 --> outputs[1]
@@ -78,19 +74,32 @@ def detect_attractor(traiettoria, fin_max):
         
     return None, None, None
 
-#Avvia la simulazione per ogni cond init
-def simulate_rbn(network, initial_cond, steps):
+#Avvia la simulazione per ogni cond init, ed esegue la logica del rumore
+#logica rumore: 
+# - theshold_noise: lista sogllie di rumore inserite da utente
+# Per ogni nodo si genera un valore casuale che aziona l'inversione del risultato se è minore della soglia specificata
+def simulate_rbn(network, initial_cond, steps, theshold_noise):
     state = np.array(initial_cond) #Carico lo stato iniziale
     traiettoria = [state.copy()] #inizializzo la traiettoria al primo stato
 
     for _ in range(steps):
-        new_state = state.copy() # stato successivo
+        new_state = state.copy() # Inizializzo stato successivo
         for node, info in network.items(): # Calcolo lo stato per ogni singolo nodo
             node = int(node)
             ingressi = info['ingressi'] # nodi in ingresso
             uscite = info['uscite'] # tabella delle uscite
             inputs = [state[i] for i in ingressi] # carico il valore degli ingressi nel nodo, in ordine
             new_state[node] = boolean_function_output(inputs, uscite) # funzione per calcolare il valore dell'uscita
+            #Dopo aver calcolato l'uscita controllo se il rumore ha interferito
+            if theshold_noise[node] > 0:
+                # Generare un numero casuale reale tra 0 e 1 che identifica il rumore attuale
+                noise = random.random()
+                print(f" Controllo nodo {node}, control: {noise} < {theshold_noise[node]}\n")
+                print(f" Stato pre controllo: {new_state[node]} \n")
+                if noise < theshold_noise[node]:
+                    new_state[node] = 1 if new_state[node] == 0 else 0 # Se era 1 diventa 0 se era 0 diventa 1 
+                print(f" Stato post controllo: {new_state[node]} \n")
+
         state = new_state # salvo il nuovo stato 
         traiettoria.append(state.copy())
     
@@ -135,23 +144,29 @@ def start_simulation_mode_3(network, initial_conditions, steps, fin_max):
 
 #Inizia la simulazione e chiama la funzione di simulazione per ogni init cond
 #Return @Lista traiettorie
-def start_simulation_normal(network, initial_conditions, steps):
+def start_simulation_normal(network, initial_conditions, steps, noise):
     results = []
     for initial in initial_conditions:
-        results.append(simulate_rbn(network, initial, steps))
+        results.append(simulate_rbn(network, initial, steps, noise))
     
     return results
 
 
-#Reading from file motore parameters, n_step - mode - finamx
+#Reading from file motore parameters, n_step - mode - finamx - ruors_list
 def read_parametri():
     parametri = {}
     with open(input_motore, 'r') as file:
-        for line in file:
-            if line.strip():
-                key, value = line.split(':')
-                parametri[key.strip()] = value.strip()
-    return parametri
+        lines = file.readlines()
+    
+    # Estrae i valori delle variabili
+    n_steps = int(lines[0].split(":")[1].strip())
+    mode = int(lines[1].split(":")[1].strip())
+    finamx = int(lines[2].split(":")[1].strip())
+    
+    # Legge la lista dei rumori per ogni nodo, sono una lista di reali
+    rumors = list(map(float, lines[3].split(":")[1].strip().split()))
+
+    return n_steps, mode, finamx, rumors
 
 #Reading the set of initial conditions
 def read_init_conditions():
@@ -165,56 +180,65 @@ def read_init_conditions():
 
 def print_result_mode_1(results, n_genes, n_cond):
      # Print the results
-    with open(os.path.join(output_dir, "output_motore.txt"), 'w') as file:
+    with open(os.path.join(output_dir, "output_motore_rumore.txt"), 'w') as file:
         file.write(f"n_genes: {n_genes} n_cond: {n_cond} \n")
         for i, result in enumerate(results):
-            #file.write(f"Initial condition {i+1}: {' '.join(str(x) for x in initial_conditions[i])}\n")
-            #file.write(f" Last step : {' '.join(str(x) for x in result[-1])}\n")
             file.write(f"{' '.join(str(x) for x in result[-1])}\n")
-            #print()
 
 def print_result_mode_2(results, n_genes, n_cond):
      # Print the results
-    with open(os.path.join(output_dir, "output_motore.txt"), 'w') as file:
+    with open(os.path.join(output_dir, "output_motore_rumore.txt"), 'w') as file:
         file.write(f"n_genes: {n_genes} n_cond: {n_cond} \n")
         for i, result in enumerate(results):
-            for step, state in enumerate(result):
-                #print(f" Step {step}: {state}")
+           for step, state in enumerate(result):
                 file.write(f"{' '.join(str(x) for x in state)}\n")
-            #print()
 
 
 def print_result_mode_3(attrattori, n_genes, n_cond):
     print("Detected attractors:")
-    with open(os.path.join(output_dir, "output_motore.txt"), 'w') as file:
+    with open(os.path.join(output_dir, "output_motore_rumore.txt"), 'w') as file:
         file.write(f'n_genes: {n_genes} n_cond: {n_cond}\n')
         for attractor, period, step in attrattori:
             file.write(f"{' '.join(str(x) for x in attractor)} \t{period} \t{step}\n")
             print(f"Attractor: {' '.join(str(x) for x in attractor)}, Period: {period}, Step: {step}")
+
+def check_parametri(mode, noise, n_genes): 
+    
+    rumor = len(noise)
+    if rumor != n_genes:
+        raise ValueError("Hai inserito una lista di rumori di dimensione differenti dal numero di geni in esame")
+
+    arr = np.array(noise) #trasformo in np array perché più facile da trattare
+    if mode == 3:
+        # Verificare se tutti gli elementi dell'array sono zero
+        is_all_zeros = np.all(arr == 0)
+        if not is_all_zeros:
+            raise ValueError("Non possiamo avere rumori diversi da 0 se vogliamo trovare degli attrattori")
+        
+    return True
 
 
 
 if __name__ == "__main__":
 
     # Carichiamo i parametri del motore
-    parametri = read_parametri()
+    n_steps, mode, fin_max, noise = read_parametri()
 
-    # Conversione dei parametri letti dal file al tipo corretto
-    n_steps = int(parametri['n_steps'])
-    mode = int(parametri['mode'])
     print(mode)
-    fin_max = int(parametri['finmax'])
+    print(f"Lista rumori: {noise}")
     
     # Carichiamo la rete e la sequenza di ocndizioni iniziali
     #network = load_rete()
     network, n_genes = load_rete_from_text()
     initial_conditions, n_cond = read_init_conditions()
+
+    check_parametri(mode, noise, n_genes)
     
     if mode == 1:
-        results = start_simulation_normal(network, initial_conditions, n_steps)
+        results = start_simulation_normal(network, initial_conditions, n_steps, noise)
         print_result_mode_1(results, n_genes, (n_steps*n_cond))
     elif mode == 2:
-        results = start_simulation_normal(network, initial_conditions, n_steps)
+        results = start_simulation_normal(network, initial_conditions, n_steps, noise)
         print_result_mode_2(results, n_genes, (n_steps*n_cond))
     elif mode == 3:
         attrattori = start_simulation_mode_3(network, initial_conditions, n_steps, fin_max)
