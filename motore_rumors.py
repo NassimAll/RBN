@@ -62,8 +62,6 @@ def detect_attractor(traiettoria, fin_max):
 
              # Calcoliamo il nome dell'attrattore trovando lo stato con il valore decimale massimo
             period_states = traiettoria[index:(first_occurrence + index)]
-            #print("sus")
-            #print(period_states)
             # Convertiamo ogni array in una stringa binaria
             lista_stringhe_binarie = [array_to_binary_string(arr) for arr in period_states]
             max_state = max(lista_stringhe_binarie)
@@ -94,11 +92,11 @@ def simulate_rbn(network, initial_cond, steps, theshold_noise):
             if theshold_noise[node] > 0:
                 # Generare un numero casuale reale tra 0 e 1 che identifica il rumore attuale
                 noise = random.random()
-                print(f" Controllo nodo {node}, control: {noise} < {theshold_noise[node]}\n")
-                print(f" Stato pre controllo: {new_state[node]} \n")
-                if noise < theshold_noise[node]:
+                #print(f" Controllo nodo {node}, control: {noise} < {theshold_noise[node]}\n")
+                #print(f" Stato pre controllo: {new_state[node]} \n")
+                if noise < theshold_noise[node]:    #Controllo se supera o meno la soglia 
                     new_state[node] = 1 if new_state[node] == 0 else 0 # Se era 1 diventa 0 se era 0 diventa 1 
-                print(f" Stato post controllo: {new_state[node]} \n")
+                #print(f" Stato post controllo: {new_state[node]} \n")
 
         state = new_state # salvo il nuovo stato 
         traiettoria.append(state.copy())
@@ -192,6 +190,7 @@ def print_result_mode_2(results, n_genes, n_cond):
         for i, result in enumerate(results):
            for step, state in enumerate(result):
                 file.write(f"{' '.join(str(x) for x in state)}\n")
+           #file.write("\n")
 
 
 def print_result_mode_3(attrattori, n_genes, n_cond):
@@ -224,15 +223,15 @@ if __name__ == "__main__":
     # Carichiamo i parametri del motore
     n_steps, mode, fin_max, noise = read_parametri()
 
-    print(mode)
+    print(f"mode = {mode}")
     print(f"Lista rumori: {noise}")
     
     # Carichiamo la rete e la sequenza di ocndizioni iniziali
-    #network = load_rete()
     network, n_genes = load_rete_from_text()
     initial_conditions, n_cond = read_init_conditions()
 
-    check_parametri(mode, noise, n_genes)
+    if check_parametri(mode, noise, n_genes):
+        print("Parametri input OK")
     
     if mode == 1:
         results = start_simulation_normal(network, initial_conditions, n_steps, noise)
