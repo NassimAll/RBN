@@ -54,6 +54,66 @@ def get_traiettorie(len_trj):
     
     return result
 
+#Funzione di analisi del singolo nodo, restituisce il periodo del pattern e il numero di passi in cui si ripete 
+def analyze_node(node):
+    lunghezza = len(node)
+    max_ripetizioni = 0 #numero di passi 
+    pattern_migliore = None
+
+    # Scorre i possibili pattern dal basso verso l'alto e ci si ferma a metà
+    for n in range(1, lunghezza // 2 + 1):
+        ripetizioni = 0
+        pattern_corrente = node[-n:]  # Pattern di lunghezza n caratteri partendo dal fondo
+        print(pattern_corrente)
+        i = lunghezza - n
+
+        # Risali la colonna per trovare ripetizioni consecutive
+        while i >= n and np.array_equal(node[i-n:i], pattern_corrente):
+            #print(node[i-n:i])
+            ripetizioni += 1
+            i -= n
+
+        print(ripetizioni)
+
+        # Verifica se è il pattern con la ripetizione maggiore
+        if ripetizioni > max_ripetizioni:
+            max_ripetizioni = ripetizioni
+            pattern_migliore = pattern_corrente
+
+    res = {
+        "pattern": pattern_migliore,
+        "passi": max_ripetizioni,
+        "periodo": len(pattern_migliore)
+    }
+
+    return res
+
+def analyze_fin(fin_to_analyze):
+    # Converto la finestra (lista di liste) in una matrice NumPy per faciilità di utilizzo
+    fin = np.array(fin_to_analyze)
+
+    result = [] # lista dei risultati per ogni nodo 
+    
+    for n in range(fin.shape[1]):
+        node = fin[:, n] # Prelevo la lista degli stati del singolo nodo
+        # Esegui l'analisi desiderata su ogni colonna
+        print(f"Nodo {n}: {node}")
+        result.append(analyze_node(node))
+
+    return result
+
+#Analisi delle traiettorie
+def analyze_all(traiettorie, fin):
+    results = [] # lista che contiene i risultati per ogni traiettoria 
+
+    for t in traiettorie:
+        fin_to_analyze = t[len(t)-fin:len(t)]
+        #[print(x) for x in fin_to_analyze]
+
+        results.append(analyze_fin(fin_to_analyze))
+
+        #print("\n")
+    return results
 
 
 if __name__ == '__main__':
@@ -63,13 +123,17 @@ if __name__ == '__main__':
     parser.add_argument("fin", type=int, default=0, help="Dimensione della finestra di analisi")
 
     args = parser.parse_args()
-    print(f"fin_analysis = {args.fin}\n")
+    print(f"Finestra di analisi = {args.fin}\n")
 
     #Leggere da input motore, per avere n_steps
     n_steps = get_Nsteps()
-    print(f"steps tr = {n_steps}\n")
+    print(f"Lunghezza singola traiettoria = {n_steps}\n")
 
     #Leggere le traiettorie del motore - lista traiettoria per ogni cond init
     traiettorie = get_traiettorie(n_steps + 1)
 
     #TO DO - AGGIUNGERE FASE DI ANALISI
+
+    results = analyze_all(traiettorie, args.fin)
+    
+    #TO DO - check results and print them on fille
