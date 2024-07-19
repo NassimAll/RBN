@@ -19,6 +19,7 @@ import argparse
 input_motore =  os.getcwd() + "/input_motore_rumors.txt"
 input_traiettorie =  os.getcwd() + "/output_motore_rumore.txt"
 out_res =  os.getcwd() + "/analisi_nodi.txt"
+out_fin =  os.getcwd() + "/fin_di_analisi.txt"
 
 
 #Reading from file motore parameters, n_step
@@ -63,9 +64,9 @@ def analyze_node(node):
 
     # Scorre i possibili pattern dal basso verso l'alto e ci si ferma a metà
     for n in range(1, lunghezza // 2 + 1):
-        ripetizioni = 1
+        ripetizioni = 1 #numero di passi 
         pattern_corrente = node[-n:]  # Pattern di lunghezza n caratteri partendo dal fondo
-        print(pattern_corrente)
+        #print(pattern_corrente)
         i = lunghezza - n
 
         # Risali la colonna per trovare ripetizioni consecutive
@@ -86,6 +87,10 @@ def analyze_node(node):
         #Se ho trovato un pattern valido per tutta la finestra di analisi posso interrompere l'analisi
         if max_ripetizioni == lunghezza or max_ripetizioni*len(pattern_migliore) == lunghezza:
             break
+    
+    #trasformare il le ripetiizoni nel numero di passi per l'output successivo
+    if len(pattern_migliore) != 1:
+        max_ripetizioni *= len(pattern_migliore)
 
     res = {
         "pattern": pattern_migliore,
@@ -98,6 +103,8 @@ def analyze_node(node):
 def analyze_fin(fin_to_analyze):
     # Converto la finestra (lista di liste) in una matrice NumPy per faciilità di utilizzo
     fin = np.array(fin_to_analyze)
+
+    write_fin(fin)
 
     result = [] # lista dei risultati per ogni nodo 
     
@@ -129,8 +136,17 @@ def write_results(results):
                 file.write(f"gene: {i} \t Periodo: {node["periodo"]} \t Passi: {node["passi"]} \t Pattern: {node["pattern"]}.\n")
             file.write("\n")
 
+def write_fin(fin):
+    with open(out_fin, 'a') as file:
+        for line in range(fin.shape[0]):
+            file.write(f"{" ".join(str(x) for x in fin[line, :])}\n")
+        file.write("\n")
 
 if __name__ == '__main__':
+
+    if os.path.exists(out_fin) and os.path.exists(out_res): 
+        os.remove(out_fin) 
+        os.remove(out_res) 
 
     #Leggere i parametri di analisi - fin_analysis
     parser = argparse.ArgumentParser(description="Script di analisi riconoscitore di nodi rumorosi")
