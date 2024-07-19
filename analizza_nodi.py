@@ -18,6 +18,7 @@ import argparse
 
 input_motore =  os.getcwd() + "/input_motore_rumors.txt"
 input_traiettorie =  os.getcwd() + "/output_motore_rumore.txt"
+out_res =  os.getcwd() + "/analisi_nodi.txt"
 
 
 #Reading from file motore parameters, n_step
@@ -62,7 +63,7 @@ def analyze_node(node):
 
     # Scorre i possibili pattern dal basso verso l'alto e ci si ferma a metà
     for n in range(1, lunghezza // 2 + 1):
-        ripetizioni = 0
+        ripetizioni = 1
         pattern_corrente = node[-n:]  # Pattern di lunghezza n caratteri partendo dal fondo
         print(pattern_corrente)
         i = lunghezza - n
@@ -73,12 +74,18 @@ def analyze_node(node):
             ripetizioni += 1
             i -= n
 
-        print(ripetizioni)
+        #print(ripetizioni)
 
         # Verifica se è il pattern con la ripetizione maggiore
         if ripetizioni > max_ripetizioni:
             max_ripetizioni = ripetizioni
             pattern_migliore = pattern_corrente
+        
+        #print(max_ripetizioni)
+        
+        #Se ho trovato un pattern valido per tutta la finestra di analisi posso interrompere l'analisi
+        if max_ripetizioni == lunghezza or max_ripetizioni*len(pattern_migliore) == lunghezza:
+            break
 
     res = {
         "pattern": pattern_migliore,
@@ -97,7 +104,7 @@ def analyze_fin(fin_to_analyze):
     for n in range(fin.shape[1]):
         node = fin[:, n] # Prelevo la lista degli stati del singolo nodo
         # Esegui l'analisi desiderata su ogni colonna
-        print(f"Nodo {n}: {node}")
+        #print(f"Nodo {n}: {node}")
         result.append(analyze_node(node))
 
     return result
@@ -114,6 +121,13 @@ def analyze_all(traiettorie, fin):
 
         #print("\n")
     return results
+
+def write_results(results):
+    with open(out_res, 'w') as file:
+        for tr in results: # Per ogni traiettoria
+            for i, node in enumerate(tr): # Per ogni nodo della traiettoria
+                file.write(f"gene: {i} \t Periodo: {node["periodo"]} \t Passi: {node["passi"]} \t Pattern: {node["pattern"]}.\n")
+            file.write("\n")
 
 
 if __name__ == '__main__':
@@ -137,3 +151,5 @@ if __name__ == '__main__':
     results = analyze_all(traiettorie, args.fin)
     
     #TO DO - check results and print them on fille
+
+    write_results(results)

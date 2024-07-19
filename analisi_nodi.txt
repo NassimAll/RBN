@@ -1,0 +1,21 @@
+gene: 0 	 Periodo: 1 	 Passi: 8 	 Pattern: [1].
+gene: 1 	 Periodo: 1 	 Passi: 5 	 Pattern: [1].
+gene: 2 	 Periodo: 1 	 Passi: 20 	 Pattern: [1].
+gene: 3 	 Periodo: 2 	 Passi: 10 	 Pattern: [1 0].
+gene: 4 	 Periodo: 1 	 Passi: 5 	 Pattern: [0].
+gene: 5 	 Periodo: 1 	 Passi: 20 	 Pattern: [1].
+gene: 6 	 Periodo: 1 	 Passi: 6 	 Pattern: [1].
+gene: 7 	 Periodo: 1 	 Passi: 5 	 Pattern: [1].
+gene: 8 	 Periodo: 1 	 Passi: 1 	 Pattern: [0].
+gene: 9 	 Periodo: 1 	 Passi: 20 	 Pattern: [1].
+gene: 10 	 Periodo: 1 	 Passi: 20 	 Pattern: [0].
+gene: 11 	 Periodo: 1 	 Passi: 5 	 Pattern: [0].
+gene: 12 	 Periodo: 1 	 Passi: 20 	 Pattern: [1].
+gene: 13 	 Periodo: 1 	 Passi: 5 	 Pattern: [0].
+gene: 14 	 Periodo: 1 	 Passi: 20 	 Pattern: [0].
+gene: 15 	 Periodo: 1 	 Passi: 5 	 Pattern: [0].
+gene: 16 	 Periodo: 1 	 Passi: 20 	 Pattern: [1].
+gene: 17 	 Periodo: 1 	 Passi: 20 	 Pattern: [1].
+gene: 18 	 Periodo: 1 	 Passi: 5 	 Pattern: [0].
+gene: 19 	 Periodo: 3 	 Passi: 2 	 Pattern: [1 0 1].
+
