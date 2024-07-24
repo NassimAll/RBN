@@ -92,10 +92,21 @@ def analyze_node(node):
     if len(pattern_migliore) != 1:
         max_ripetizioni *= len(pattern_migliore)
 
+    if len(pattern_migliore) == 1:
+        stato = "COSTANTE "
+    else:
+        stato = "PERIODICO "
+    
+    if max_ripetizioni == lunghezza:
+        stato += "REGOLARE"
+    else: stato += "IRREGOLARE"
+
+
     res = {
         "pattern": pattern_migliore,
         "passi": max_ripetizioni,
-        "periodo": len(pattern_migliore)
+        "periodo": len(pattern_migliore),
+        "stato": stato
     }
 
     return res
@@ -121,7 +132,7 @@ def analyze_all(traiettorie, fin):
     results = [] # lista che contiene i risultati per ogni traiettoria 
 
     for t in traiettorie:
-        fin_to_analyze = t[len(t)-fin:len(t)]
+        fin_to_analyze = t[len(t)-fin:len(t)] #Prelevo la finestra da ogni traiettoria
         #[print(x) for x in fin_to_analyze]
 
         results.append(analyze_fin(fin_to_analyze))
@@ -129,13 +140,15 @@ def analyze_all(traiettorie, fin):
         #print("\n")
     return results
 
+#Scrive i risultati dell'analisi su analisi_nodi.txt
 def write_results(results):
     with open(out_res, 'w') as file:
         for tr in results: # Per ogni traiettoria
             for i, node in enumerate(tr): # Per ogni nodo della traiettoria
-                file.write(f"gene: {i} \t Periodo: {node["periodo"]} \t Passi: {node["passi"]} \t Pattern: {node["pattern"]}.\n")
+                file.write(f"gene: {i} \t Periodo: {node["periodo"]} \t Passi: {node["passi"]} \t Pattern: {node["pattern"]}\t Stato: {node["stato"]}.\n")
             file.write("\n")
 
+#Scrive la finestra di analisi di ogni traiettoria in fin_di_analisi.txt
 def write_fin(fin):
     with open(out_fin, 'a') as file:
         for line in range(fin.shape[0]):
@@ -144,6 +157,7 @@ def write_fin(fin):
 
 if __name__ == '__main__':
 
+    #Remove dei file per stampare i nuovi risultati
     if os.path.exists(out_fin) and os.path.exists(out_res): 
         os.remove(out_fin) 
         os.remove(out_res) 
@@ -160,12 +174,10 @@ if __name__ == '__main__':
     print(f"Lunghezza singola traiettoria = {n_steps}\n")
 
     #Leggere le traiettorie del motore - lista traiettoria per ogni cond init
-    traiettorie = get_traiettorie(n_steps + 1)
+    traiettorie = get_traiettorie(n_steps + 1) # n_steps + 1 perche per ogni condizinone si deve considerare la prima cond iniziale
 
-    #TO DO - AGGIUNGERE FASE DI ANALISI
-
+    #FASE DI ANALISI
     results = analyze_all(traiettorie, args.fin)
     
-    #TO DO - check results and print them on fille
-
+    #Stampa risultati su file
     write_results(results)
