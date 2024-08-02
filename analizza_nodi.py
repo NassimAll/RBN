@@ -140,13 +140,17 @@ def analyze_all(traiettorie, fin):
         #print("\n")
     return results
 
-#Scrive i risultati dell'analisi su analisi_nodi.txt
+#Scrive i risultati dell'analisi su analisi_nodi.txt, ogni riga è una condizione iniziale differente, traiettoria differente
+#ogni colonna rappresenta un nodo
 def write_results(results):
     with open(out_res, 'w') as file:
         for tr in results: # Per ogni traiettoria
+            line = ""
             for i, node in enumerate(tr): # Per ogni nodo della traiettoria
-                file.write(f"gene: {i} \t Periodo: {node["periodo"]} \t Passi: {node["passi"]} \t Pattern: {node["pattern"]}\t Stato: {node["stato"]}.\n")
-            file.write("\n")
+                line +=  str(node["passi"]) + "\t"
+                #file.write(f"gene: {i} \t Periodo: {node["periodo"]} \t Passi: {node["passi"]} \t Pattern: {node["pattern"]}\n")
+            line += "\n"
+            file.write(line)
 
 #Scrive la finestra di analisi di ogni traiettoria in fin_di_analisi.txt
 def write_fin(fin):
@@ -154,6 +158,22 @@ def write_fin(fin):
         for line in range(fin.shape[0]):
             file.write(f"{" ".join(str(x) for x in fin[line, :])}\n")
         file.write("\n")
+
+def main_analisi_for_MG1(fin, n_steps):
+
+     #Remove dei file per stampare i nuovi risultati
+    if os.path.exists(out_fin) and os.path.exists(out_res): 
+        os.remove(out_fin) 
+        os.remove(out_res) 
+    
+    #Leggere le traiettorie del motore - lista traiettoria per ogni cond init
+    traiettorie = get_traiettorie(n_steps + 1) # n_steps + 1 perche per ogni condizinone si deve considerare la prima cond iniziale
+
+    #FASE DI ANALISI
+    results = analyze_all(traiettorie, fin)
+
+    #Stampa risultati su file
+    write_results(results)
 
 if __name__ == '__main__':
 

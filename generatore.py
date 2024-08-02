@@ -62,6 +62,27 @@ def write_output(rete, n_nodi, file_output):
             print(f"uscite({len(rete[nodo]["uscite"])}): {' '.join(map(str, rete[nodo]["uscite"]))}")
             file.write(f"uscite({len(rete[nodo]["uscite"])}): {' '.join(map(str, rete[nodo]["uscite"]))}\n")
 
+def main_for_sim():
+    # Lettura dei parametri dal file
+    parametri = read_param()
+
+   # Conversione dei parametri letti dal file al tipo corretto
+    n_nodi = int(parametri['n_nodi'])
+    k_minimo = int(parametri['k_minimo'])
+    k_massimo = int(parametri['k_massimo'])
+    probabilita_k = list(map(float, parametri['probabilita_k'].split()))
+    bias = list(map(float, parametri['bias per ogni k'].split()))
+    seme = int(parametri['seme'])
+
+    # Generazione della rete casuale
+    rete = generate_RBN(n_nodi, k_minimo, k_massimo, probabilita_k, bias, seme)
+
+    # Scrittura della rete su stdout e text
+    write_output(rete, n_nodi, output_txt)
+
+    print("GRAFO GENERATO")
+
+    return True
 
 if __name__ == '__main__':
     

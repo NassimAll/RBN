@@ -47,6 +47,18 @@ def write_out(condizioni, n_genes, n_cond):
         for condizione in condizioni:
             file.write(' '.join(map(str, condizione)) + '\n')
 
+def main_initcond():
+    # Lettura dei parametri dal file
+    n_genes, n_cond, bias, seme, flag, mask = read_param()
+
+    # Generazione delle condizioni iniziali
+    condizioni_iniziali = gen_condizioni_iniziali(n_genes, n_cond, bias, seme, mask)
+
+    # Scrittura delle condizioni su file
+    write_out(condizioni_iniziali, n_genes, n_cond)
+
+    return True
+
 
 if __name__ == '__main__':
     

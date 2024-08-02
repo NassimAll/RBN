@@ -216,7 +216,16 @@ def check_parametri(mode, noise, n_genes):
         
     return True
 
+def main_for_MG1(mode, noise, n_steps):
+     # Carichiamo la rete e la sequenza di ocndizioni iniziali
+    network, n_genes = load_rete_from_text()
+    initial_conditions, n_cond = read_init_conditions()
 
+    if check_parametri(mode, noise, n_genes):
+        print("Parametri input OK")
+    
+    results = start_simulation_normal(network, initial_conditions, n_steps, noise)
+    print_result_mode_2(results, n_genes, (n_steps*n_cond))
 
 if __name__ == "__main__":
 
