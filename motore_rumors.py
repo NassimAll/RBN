@@ -9,7 +9,7 @@ import random
 input_motore =  os.getcwd() + "/input_motore_rumors.txt"
 input_grafo_txt =  os.getcwd() + "/grafo.txt"
 input_condInit =  os.getcwd() + "/condizioni_iniziali.txt"
-output_dir = os.getcwd() + "/"
+output_dir = os.getcwd()
 
 #load da file di testo
 def load_rete_from_text():
@@ -220,10 +220,7 @@ def main_for_MG1(mode, noise, n_steps):
      # Carichiamo la rete e la sequenza di ocndizioni iniziali
     network, n_genes = load_rete_from_text()
     initial_conditions, n_cond = read_init_conditions()
-
-    if check_parametri(mode, noise, n_genes):
-        print("Parametri input OK")
-    
+  
     results = start_simulation_normal(network, initial_conditions, n_steps, noise)
     print_result_mode_2(results, n_genes, (n_steps*n_cond))
 

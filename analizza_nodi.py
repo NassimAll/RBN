@@ -115,7 +115,7 @@ def analyze_fin(fin_to_analyze):
     # Converto la finestra (lista di liste) in una matrice NumPy per faciilità di utilizzo
     fin = np.array(fin_to_analyze)
 
-    write_fin(fin)
+    #write_fin(fin)
 
     result = [] # lista dei risultati per ogni nodo 
     
