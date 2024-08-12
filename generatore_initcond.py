@@ -24,7 +24,8 @@ def read_param():
     return n_genes, n_cond, bias, seme, flag, mask
 
 def gen_condizioni_iniziali(n_genes, n_cond, bias, seme, maschera):
-    random.seed(seme)
+    #random.seed(seme)
+    random.seed()
     condizioni = []
     
     for _ in range(n_cond):

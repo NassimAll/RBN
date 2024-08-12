@@ -20,6 +20,7 @@ def read_param():
 
 def generate_RBN(n_nodi, k_minimo, k_massimo, probabilita_k, bias, seme):
     random.seed(seme)
+    random.seed()
     rete = {}
     
     if len(probabilita_k) != (k_massimo - k_minimo + 1):
