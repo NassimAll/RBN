@@ -3,7 +3,7 @@ import os
 import numpy as np
 import shutil
 import statistics
-from generatore import main_for_sim
+from generatore import main_for_sim, read_param
 from generatore_initcond import main_initcond
 from motore_rumors import main_for_MG1
 #from motore_rumors import simulate_rbn, load_rete_from_text
@@ -23,9 +23,9 @@ per ogni nodo diverso in cui viene posto il rumore
 '''
 
 dir =  os.getcwd()
-path = os.path.join(dir, f"RISULTATI_MG1") 
+path = os.path.join(dir, f"RISULTATI_MG3_20") 
 #output_dir = dir + "/resultMG1/"
-res_file = os.path.join(path,"MG1_res")
+res_file = os.path.join(path,"MG3_")
 analisi_path = os.path.join(dir, "analisi_nodi.txt")
 N_reti = 50
 n = 20
@@ -101,37 +101,46 @@ def simulate_with_noise(file_name, val):
 
 if __name__ == '__main__':
 
+    #DEFINIAMO QUI I PARAMETRI PER EVITARE UNA CONTINUA LETTURA DEL FILE
+    n_nodi = n
+    k_minimo = 3
+    k_massimo = 3
+    probabilita_k = [1.0]
+    bias = [0.21]
+    n_cond = 1000
+    mask = [2] * n_nodi
+
     #CREAIAMO LA CARTELLA DELLA RETE RELATIVA
     if not os.path.exists(path): 
         os.mkdir(path) 
     
     #generare il grafo per la simulazione - Input fisso nel file
     for i in range(N_reti):
-
-        if not main_for_sim():
+        
+        if not main_for_sim(n_nodi, k_minimo, k_massimo, probabilita_k, bias):
             raise ValueError('Si è verificato un errore con la generazione del grafo')
 
         print("GRAFO OK")
         shutil.copy(os.path.join(dir,'grafo.txt'), os.path.join(path,f'grafo_{i}.txt')) #salvo il grafo
 
         #GENERARE LE CONDIZIONI INIZIALI - Input fisso nel file
-        if not main_initcond():
+        if not main_initcond(n_nodi, n_cond, 0.5, mask):
             raise ValueError('Si è verificato un errore con la generazione delle condizioni iniziali')
 
         print("CONDIZIONI INIZIALI OK")
-        shutil.copy(os.path.join(dir,'condizioni_iniziali.txt'), os.path.join(path,f'condizioni_iniziali{_i}.txt'))
+        shutil.copy(os.path.join(dir,'condizioni_iniziali.txt'), os.path.join(path,f'condizioni_iniziali_{i}.txt'))
 
        #INIZIO SIMULAZIONI
         file_name = res_file + f"_R{i}_res.txt"
         write_intestazione(file_name, f"RETE {i} - rumore = 0.02 \n")
         simulate_with_noise(file_name, 0.02)
-
+        print(f"FINE 0.02")
         write_intestazione(file_name, f"RETE {i} - rumore = 0.1 \n")
         simulate_with_noise(file_name, 0.1)
-
-        write_intestazione(file_name, f"RETE {i} - rumore = 0.1 \n")
+        print(f"FINE 0.1")
+        write_intestazione(file_name, f"RETE {i} - rumore = 0.2 \n")
         simulate_with_noise(file_name, 0.2)
-
+        print(f"FINE  0.2")
         write_intestazione(file_name, f"RETE {i} - rumore = 0.5 \n")
         simulate_with_noise(file_name, 0.5)
 

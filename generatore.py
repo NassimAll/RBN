@@ -19,7 +19,11 @@ def read_param():
     return parametri
 
 def generate_RBN(n_nodi, k_minimo, k_massimo, probabilita_k, bias, seme):
+<<<<<<< HEAD
     random.seed(seme)
+=======
+     #random.seed(seme)
+>>>>>>> fcc889b9d6919251bfabbdf59723c9c45cf4fbb3
     random.seed()
     rete = {}
     
@@ -63,20 +67,9 @@ def write_output(rete, n_nodi, file_output):
             print(f"uscite({len(rete[nodo]["uscite"])}): {' '.join(map(str, rete[nodo]["uscite"]))}")
             file.write(f"uscite({len(rete[nodo]["uscite"])}): {' '.join(map(str, rete[nodo]["uscite"]))}\n")
 
-def main_for_sim():
-    # Lettura dei parametri dal file
-    parametri = read_param()
-
-   # Conversione dei parametri letti dal file al tipo corretto
-    n_nodi = int(parametri['n_nodi'])
-    k_minimo = int(parametri['k_minimo'])
-    k_massimo = int(parametri['k_massimo'])
-    probabilita_k = list(map(float, parametri['probabilita_k'].split()))
-    bias = list(map(float, parametri['bias per ogni k'].split()))
-    seme = int(parametri['seme'])
-
+def main_for_sim(n_nodi, k_minimo, k_massimo, probabilita_k, bias):
     # Generazione della rete casuale
-    rete = generate_RBN(n_nodi, k_minimo, k_massimo, probabilita_k, bias, seme)
+    rete = generate_RBN(n_nodi, k_minimo, k_massimo, probabilita_k, bias, 0)
 
     # Scrittura della rete su stdout e text
     write_output(rete, n_nodi, output_txt)

@@ -1,5 +1,6 @@
-n_genes: 20
+n_genes: 50
 gene: 0
+<<<<<<< HEAD
 lista_ingressi(2): 17 6
 uscite(4): 0 0 0 1
 gene: 1
@@ -59,3 +60,154 @@ uscite(4): 1 0 1 1
 gene: 19
 lista_ingressi(2): 1 15
 uscite(4): 0 1 0 1
+=======
+lista_ingressi(2): 44 48
+uscite(4): 0 1 1 1
+gene: 1
+lista_ingressi(2): 9 38
+uscite(4): 1 0 1 0
+gene: 2
+lista_ingressi(2): 19 23
+uscite(4): 0 0 1 0
+gene: 3
+lista_ingressi(2): 25 12
+uscite(4): 0 0 1 1
+gene: 4
+lista_ingressi(2): 5 33
+uscite(4): 1 1 0 1
+gene: 5
+lista_ingressi(2): 43 42
+uscite(4): 1 0 0 1
+gene: 6
+lista_ingressi(2): 13 11
+uscite(4): 1 0 1 1
+gene: 7
+lista_ingressi(2): 24 32
+uscite(4): 0 0 1 0
+gene: 8
+lista_ingressi(2): 22 39
+uscite(4): 1 0 0 0
+gene: 9
+lista_ingressi(2): 19 24
+uscite(4): 0 0 1 0
+gene: 10
+lista_ingressi(2): 33 25
+uscite(4): 1 0 1 1
+gene: 11
+lista_ingressi(2): 41 5
+uscite(4): 0 0 1 0
+gene: 12
+lista_ingressi(2): 49 2
+uscite(4): 0 0 0 1
+gene: 13
+lista_ingressi(2): 3 43
+uscite(4): 1 0 1 0
+gene: 14
+lista_ingressi(2): 44 22
+uscite(4): 1 1 0 0
+gene: 15
+lista_ingressi(2): 14 34
+uscite(4): 1 0 1 0
+gene: 16
+lista_ingressi(2): 8 24
+uscite(4): 0 1 0 1
+gene: 17
+lista_ingressi(2): 5 24
+uscite(4): 1 1 1 0
+gene: 18
+lista_ingressi(2): 49 1
+uscite(4): 1 1 1 1
+gene: 19
+lista_ingressi(2): 48 47
+uscite(4): 0 0 1 0
+gene: 20
+lista_ingressi(2): 9 44
+uscite(4): 1 1 1 1
+gene: 21
+lista_ingressi(2): 4 18
+uscite(4): 1 0 0 1
+gene: 22
+lista_ingressi(2): 48 40
+uscite(4): 0 0 0 1
+gene: 23
+lista_ingressi(2): 41 35
+uscite(4): 0 0 0 1
+gene: 24
+lista_ingressi(2): 8 11
+uscite(4): 0 0 1 0
+gene: 25
+lista_ingressi(2): 0 26
+uscite(4): 0 0 0 0
+gene: 26
+lista_ingressi(2): 36 45
+uscite(4): 1 1 0 0
+gene: 27
+lista_ingressi(2): 28 35
+uscite(4): 0 0 0 0
+gene: 28
+lista_ingressi(2): 26 11
+uscite(4): 1 0 0 1
+gene: 29
+lista_ingressi(2): 42 34
+uscite(4): 0 0 1 0
+gene: 30
+lista_ingressi(2): 36 35
+uscite(4): 1 1 0 0
+gene: 31
+lista_ingressi(2): 49 18
+uscite(4): 1 1 0 0
+gene: 32
+lista_ingressi(2): 23 18
+uscite(4): 1 0 0 1
+gene: 33
+lista_ingressi(2): 9 18
+uscite(4): 1 0 0 1
+gene: 34
+lista_ingressi(2): 31 17
+uscite(4): 0 0 0 0
+gene: 35
+lista_ingressi(2): 3 27
+uscite(4): 1 0 1 1
+gene: 36
+lista_ingressi(2): 37 32
+uscite(4): 0 1 1 0
+gene: 37
+lista_ingressi(2): 20 0
+uscite(4): 0 0 1 1
+gene: 38
+lista_ingressi(2): 4 28
+uscite(4): 0 1 0 0
+gene: 39
+lista_ingressi(2): 5 24
+uscite(4): 1 0 1 0
+gene: 40
+lista_ingressi(2): 43 42
+uscite(4): 0 1 1 1
+gene: 41
+lista_ingressi(2): 45 20
+uscite(4): 0 1 1 1
+gene: 42
+lista_ingressi(2): 48 35
+uscite(4): 0 1 1 0
+gene: 43
+lista_ingressi(2): 43 17
+uscite(4): 0 1 1 1
+gene: 44
+lista_ingressi(2): 40 35
+uscite(4): 0 0 0 0
+gene: 45
+lista_ingressi(2): 27 33
+uscite(4): 0 1 0 0
+gene: 46
+lista_ingressi(2): 29 46
+uscite(4): 1 1 1 0
+gene: 47
+lista_ingressi(2): 38 37
+uscite(4): 0 0 0 0
+gene: 48
+lista_ingressi(2): 14 12
+uscite(4): 0 0 0 1
+gene: 49
+lista_ingressi(2): 13 27
+uscite(4): 0 0 1 1
+>>>>>>> fcc889b9d6919251bfabbdf59723c9c45cf4fbb3
