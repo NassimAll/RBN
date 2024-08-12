@@ -25,7 +25,7 @@ per ogni nodo diverso in cui viene posto il rumore
 dir =  os.getcwd()
 path = os.path.join(dir, f"RISULTATI_MG3_20") 
 #output_dir = dir + "/resultMG1/"
-res_file = os.path.join(path,"MG1_")
+res_file = os.path.join(path,"MG3_")
 analisi_path = os.path.join(dir, "analisi_nodi.txt")
 N_reti = 50
 n = 20
