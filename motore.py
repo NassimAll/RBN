@@ -193,6 +193,17 @@ def print_result_mode_3(attrattori, n_genes, n_cond):
             print(f"Attractor: {' '.join(str(x) for x in attractor)}, Period: {period}, Step: {step}")
 
 
+def NW1_find_attractor(mode, n_steps, fin_max):
+    # Carichiamo la rete e la sequenza di ocndizioni iniziali
+    network, n_genes = load_rete_from_text()
+    initial_conditions, n_cond = read_init_conditions()
+  
+    if mode == 3:
+        attrattori = start_simulation_mode_3(network, initial_conditions, n_steps, fin_max)
+        print_result_mode_3(attrattori, n_genes, n_cond)
+
+
+
 
 if __name__ == "__main__":
 

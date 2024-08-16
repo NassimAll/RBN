@@ -19,11 +19,7 @@ def read_param():
     return parametri
 
 def generate_RBN(n_nodi, k_minimo, k_massimo, probabilita_k, bias, seme):
-<<<<<<< HEAD
-    random.seed(seme)
-=======
      #random.seed(seme)
->>>>>>> fcc889b9d6919251bfabbdf59723c9c45cf4fbb3
     random.seed()
     rete = {}
     
