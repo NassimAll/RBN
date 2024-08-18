@@ -50,13 +50,14 @@ def write_results(results, n_genes, n_cond):
                 file.write(f"{' '.join(str(x) for x in state)}\n")
             file.write("\n")
 
-
-if __name__ == "__main__":
-
-    # Carichiamo i parametri del motore
+def main(): 
+     # Carichiamo i parametri del motore
     # n_cond --> sono il numero di attrattori che in questo caso sono le condizioni di simulazione
     attractors, n_genes, n_cond = read_attrattori()
 
     results = expand_attractors(attractors)
 
     write_results(results, n_genes, n_cond)
+
+if __name__ == "__main__":
+   main()

@@ -3,7 +3,7 @@ import os
 import numpy as np
 import shutil
 import statistics
-from generatore import main_for_sim, read_param
+from generatore import main_for_sim
 from generatore_initcond import main_initcond
 from motore_rumors import main_for_MG1
 #from motore_rumors import simulate_rbn, load_rete_from_text
@@ -23,7 +23,11 @@ per ogni nodo diverso in cui viene posto il rumore
 '''
 
 dir =  os.getcwd()
+<<<<<<< HEAD
 path = os.path.join(dir, f"RISULTATI_MG4") 
+=======
+path = os.path.join(dir, f"RISULTATI_MG4_20") 
+>>>>>>> 44488158db22cfefda12e26a90f0fd385dc911f4
 #output_dir = dir + "/resultMG1/"
 res_file = os.path.join(path,"MG4_")
 analisi_path = os.path.join(dir, "analisi_nodi.txt")
