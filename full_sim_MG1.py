@@ -23,9 +23,9 @@ per ogni nodo diverso in cui viene posto il rumore
 '''
 
 dir =  os.getcwd()
-path = os.path.join(dir, f"RISULTATI_MG3_20") 
+path = os.path.join(dir, f"RISULTATI_MG4") 
 #output_dir = dir + "/resultMG1/"
-res_file = os.path.join(path,"MG3_")
+res_file = os.path.join(path,"MG4_")
 analisi_path = os.path.join(dir, "analisi_nodi.txt")
 N_reti = 50
 n = 20
@@ -106,7 +106,7 @@ if __name__ == '__main__':
     k_minimo = 3
     k_massimo = 3
     probabilita_k = [1.0]
-    bias = [0.21]
+    bias = [0.14]
     n_cond = 1000
     mask = [2] * n_nodi
 
