@@ -32,7 +32,9 @@ from motore_rumors import main_for_MG1
 #current directory
 dir =  os.getcwd()
 #path for result
-path = os.path.join(dir, f"result_NW1") 
+path = os.path.join(dir, f"dati") 
+reti = 50
+
 
 # Funzione per calcolare la distanza di Hamming tra due stati
 def distanza_hamming(stato1, stato2):
@@ -96,11 +98,11 @@ def analisi(traiettorie):
 
     return risultati
 
-def print_results(res_analisi):
+def print_results(res_analisi, name):
     # Print the results
-    with open(os.path.join(path, "distanza_attrattori.txt"), 'w') as file:
+    with open(name, 'w') as file:
         for (stato, attrattori, dist) in res_analisi:
-            file.write(f"{' '.join(str(x) for x in stato)} \t {dist} \t {list(attrattori)}\n")
+            file.write(f"{' '.join(str(x) for x in stato)} \t {dist} \t {' '.join(str(x) for x in list(attrattori))}\n")
 
            #file.write("\n")
 
@@ -119,46 +121,146 @@ def main():
     if not os.path.exists(path): 
         os.mkdir(path) 
     
-    #create rbn 
-    if not main_for_sim(n_nodi, k_minimo, k_massimo, probabilita_k, bias):
-        raise ValueError('Si è verificato un errore con la generazione del grafo')
+    for i in range(reti):
+        #create rbn 
+        if not main_for_sim(n_nodi, k_minimo, k_massimo, probabilita_k, bias):
+            raise ValueError('Si è verificato un errore con la generazione del grafo')
+        
+        shutil.copy(os.path.join(dir,'grafo.txt'), os.path.join(path,f'grafo{i}.txt')) #salvo il grafo
 
-     #Generate init conditions
-    if not main_initcond(n_nodi, n_cond, 0.5, mask):
-        raise ValueError('Si è verificato un errore con la generazione delle condizioni iniziali')
+        #Generate init conditions
+        if not main_initcond(n_nodi, n_cond, 0.5, mask):
+            raise ValueError('Si è verificato un errore con la generazione delle condizioni iniziali')
 
-    #PARAMETRI MOTORE
-    n_steps = 500
-    mode = 3 
-    finmax = 100
+        #PARAMETRI MOTORE
+        n_steps = 500
+        mode = 3 
+        finmax = 100
 
-    #get attractors
-    NW1_find_attractor(mode, n_steps, finmax)
-    RBN_rapporto.main()
-    espandi_attrattori.main()
+        #get attractors
+        NW1_find_attractor(mode, n_steps, finmax)
+        RBN_rapporto.main()
+        espandi_attrattori.main()
 
-    shutil.copy(os.path.join(dir,'attrattori_espansi.txt'), os.path.join(path,f'attrattori.txt'))
+        shutil.copy(os.path.join(dir,'attrattori_espansi.txt'), os.path.join(path,f'attrattori{i}.txt'))
 
-    #Ottenuti glli attrattori e la loro traiettoria simuliamo aggiungendo rumore in ogni nodo 
+        #Ottenuti glli attrattori e la loro traiettoria simuliamo aggiungendo rumore in ogni nodo 
 
-    #Primo tentativo rumore = 1/20
+        #Primo tentativo rumore = 1/20 = 0.05
+        rumore = [0.05] * n_nodi
+        mode = 2
+        #simulate with noise
+        traiettorie = main_for_MG1(mode, rumore, n_steps)
+        # Unire tutte le sottoliste in una sola lista
+        traiettorie = list(itertools.chain(*traiettorie))
 
-    rumore = [0.05] * n_nodi
-    mode = 2
-    #simulate with noise
-    traiettorie = main_for_MG1(mode, rumore, n_steps)
-    # Unire tutte le sottoliste in una sola lista
-    traiettorie = list(itertools.chain(*traiettorie))
+        shutil.copy(os.path.join(dir,'output_motore_rumore.txt'), os.path.join(path,f'traiettorie_min{i}.txt'))
 
+        print('INIZIO ANALISI')
 
+        result = analisi(traiettorie)
 
-    shutil.copy(os.path.join(dir,'output_motore_rumore.txt'), os.path.join(path,f'traiettorie.txt'))
+        out_dir = os.path.join(os.getcwd(), 'res_min')
+         #result folder
+        if not os.path.exists(out_dir): 
+            os.mkdir(out_dir) 
 
-    print('INIZIO ANALISI')
+        file_res = os.path.join(out_dir, f"distanza_attrattori{i}.txt") 
 
-    result = analisi(traiettorie)
+        print_results(result, file_res)
 
-    print_results(result)
+        #Secondo tentativo rumore = 1/20 = 0.1
+        rumore = [0.1] * n_nodi
+        mode = 2
+        #simulate with noise
+        traiettorie = main_for_MG1(mode, rumore, n_steps)
+        # Unire tutte le sottoliste in una sola lista
+        traiettorie = list(itertools.chain(*traiettorie))
+
+        shutil.copy(os.path.join(dir,'output_motore_rumore.txt'), os.path.join(path,f'traiettorie_01_{i}.txt'))
+
+        print('INIZIO ANALISI')
+
+        result = analisi(traiettorie)
+
+        out_dir =  os.path.join(os.getcwd(), 'res_01')
+         #result folder
+        if not os.path.exists(out_dir): 
+            os.mkdir(out_dir) 
+
+        file_res = os.path.join(out_dir, f"distanza_attrattori{i}.txt") 
+
+        print_results(result, file_res)
+
+    #Secondo tentativo rumore = 1/20 = 0.1
+        rumore = [0.2] * n_nodi
+        mode = 2
+        #simulate with noise
+        traiettorie = main_for_MG1(mode, rumore, n_steps)
+        # Unire tutte le sottoliste in una sola lista
+        traiettorie = list(itertools.chain(*traiettorie))
+
+        shutil.copy(os.path.join(dir,'output_motore_rumore.txt'), os.path.join(path,f'traiettorie_02_{i}.txt'))
+
+        print('INIZIO ANALISI')
+
+        result = analisi(traiettorie)
+
+        out_dir =  os.path.join(os.getcwd(), 'res_02')
+         #result folder
+        if not os.path.exists(out_dir): 
+            os.mkdir(out_dir) 
+
+        file_res = os.path.join(out_dir, f"distanza_attrattori{i}.txt") 
+
+        print_results(result, file_res)
+
+        #quarto tentativo rumore = 1/20 = 0.5
+        rumore = [0.5] * n_nodi
+        mode = 2
+        #simulate with noise
+        traiettorie = main_for_MG1(mode, rumore, n_steps)
+        # Unire tutte le sottoliste in una sola lista
+        traiettorie = list(itertools.chain(*traiettorie))
+
+        shutil.copy(os.path.join(dir,'output_motore_rumore.txt'), os.path.join(path,f'traiettorie_05_{i}.txt'))
+
+        print('INIZIO ANALISI')
+
+        result = analisi(traiettorie)
+
+        out_dir =  os.path.join(os.getcwd(), 'res_05')
+         #result folder
+        if not os.path.exists(out_dir): 
+            os.mkdir(out_dir) 
+
+        file_res = os.path.join(out_dir, f"distanza_attrattori{i}.txt") 
+
+        print_results(result, file_res)
+
+        #Secondo tentativo rumore = 1/20 = 0.1
+        rumore = [0.7] * n_nodi
+        mode = 2
+        #simulate with noise
+        traiettorie = main_for_MG1(mode, rumore, n_steps)
+        # Unire tutte le sottoliste in una sola lista
+        traiettorie = list(itertools.chain(*traiettorie))
+
+        shutil.copy(os.path.join(dir,'output_motore_rumore.txt'), os.path.join(path,f'traiettorie_07_{i}.txt'))
+
+        print('INIZIO ANALISI')
+
+        result = analisi(traiettorie)
+
+        out_dir =  os.path.join(os.getcwd(), 'res_07')
+         #result folder
+        if not os.path.exists(out_dir): 
+            os.mkdir(out_dir) 
+
+        file_res = os.path.join(out_dir, f"distanza_attrattori{i}.txt") 
+
+        print_results(result, file_res)
+
 
 
 if __name__ == '__main__':
