@@ -1,4 +1,4 @@
-n_nodi: 20
+n_nodi: 6
 
 k_minimo:  2
 k_massimo: 2
