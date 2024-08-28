@@ -23,12 +23,12 @@ per ogni nodo diverso in cui viene posto il rumore
 '''
 
 dir =  os.getcwd()
-path = os.path.join(dir, f"RISULTATI_MG4_20") 
+path = os.path.join(dir, f"RISULTATI_200") 
 #output_dir = dir + "/resultMG1/"
-res_file = os.path.join(path,"MG4_")
+res_file = os.path.join(path,"MG2_200")
 analisi_path = os.path.join(dir, "analisi_nodi.txt")
-N_reti = 50
-n = 20
+N_reti = 1
+n = 200
 #PARAMETRI MOTORE
 n_steps = 500
 mode = 2
@@ -103,10 +103,10 @@ if __name__ == '__main__':
 
     #DEFINIAMO QUI I PARAMETRI PER EVITARE UNA CONTINUA LETTURA DEL FILE
     n_nodi = n
-    k_minimo = 3
-    k_massimo = 3
+    k_minimo = 2
+    k_massimo = 2
     probabilita_k = [1.0]
-    bias = [0.14]
+    bias = [0.5]
     n_cond = 1000
     mask = [2] * n_nodi
 
