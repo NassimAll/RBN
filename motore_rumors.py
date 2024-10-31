@@ -216,17 +216,6 @@ def check_parametri(mode, noise, n_genes):
         
     return True
 
-def main_for_MG1(mode, noise, n_steps):
-     # Carichiamo la rete e la sequenza di ocndizioni iniziali
-    network, n_genes = load_rete_from_text()
-    initial_conditions, n_cond = read_init_conditions()
-    
-    if mode == 2:
-        results = start_simulation_normal(network, initial_conditions, n_steps, noise)
-        print_result_mode_2(results, n_genes, (n_steps*n_cond))
-    
-    return results
-
 if __name__ == "__main__":
 
     # Carichiamo i parametri del motore

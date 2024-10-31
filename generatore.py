@@ -7,7 +7,6 @@ input_file =  os.getcwd() + "/input_generatore.txt"
 output_txt = os.getcwd() + "/grafo.txt"
 output_json = os.getcwd() + "/rete.json"
 
-
 #Leggiamo i parametri in input dal file
 def read_param():
     parametri = {}
@@ -19,8 +18,8 @@ def read_param():
     return parametri
 
 def generate_RBN(n_nodi, k_minimo, k_massimo, probabilita_k, bias, seme):
-     #random.seed(seme)
-    random.seed()
+    random.seed(seme)
+    #random.seed()
     rete = {}
     
     if len(probabilita_k) != (k_massimo - k_minimo + 1):
@@ -63,17 +62,6 @@ def write_output(rete, n_nodi, file_output):
             print(f"uscite({len(rete[nodo]["uscite"])}): {' '.join(map(str, rete[nodo]["uscite"]))}")
             file.write(f"uscite({len(rete[nodo]["uscite"])}): {' '.join(map(str, rete[nodo]["uscite"]))}\n")
 
-def main_for_sim(n_nodi, k_minimo, k_massimo, probabilita_k, bias):
-    # Generazione della rete casuale
-    rete = generate_RBN(n_nodi, k_minimo, k_massimo, probabilita_k, bias, 0)
-
-    # Scrittura della rete su stdout e text
-    write_output(rete, n_nodi, output_txt)
-
-    print("GRAFO GENERATO")
-
-    return True
-
 if __name__ == '__main__':
     
     # Lettura dei parametri dal file
@@ -91,7 +79,7 @@ if __name__ == '__main__':
     rete = generate_RBN(n_nodi, k_minimo, k_massimo, probabilita_k, bias, seme)
 
     # Scrittura della rete su json
-    write_on_json(rete, output_json)
+    #write_on_json(rete, output_json)
 
     # Scrittura della rete su stdout e text
     write_output(rete, n_nodi, output_txt)

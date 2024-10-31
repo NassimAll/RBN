@@ -203,8 +203,6 @@ def NW1_find_attractor(mode, n_steps, fin_max):
         print_result_mode_3(attrattori, n_genes, n_cond)
 
 
-
-
 if __name__ == "__main__":
 
     # Carichiamo i parametri del motore

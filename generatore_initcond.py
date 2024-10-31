@@ -24,9 +24,10 @@ def read_param():
     return n_genes, n_cond, bias, seme, flag, mask
 
 def gen_condizioni_iniziali(n_genes, n_cond, bias, seme, maschera):
-    #random.seed(seme)
-    random.seed()
+    random.seed(seme)
+   # random.seed()
     condizioni = []
+    val = 0
     
     for _ in range(n_cond):
         condizione = []
@@ -47,17 +48,6 @@ def write_out(condizioni, n_genes, n_cond):
         file.write(f"n_genes: {n_genes} n_cond: {n_cond}\n")
         for condizione in condizioni:
             file.write(' '.join(map(str, condizione)) + '\n')
-
-def main_initcond(n_genes, n_cond, bias, mask):
-
-    # Generazione delle condizioni iniziali
-    condizioni_iniziali = gen_condizioni_iniziali(n_genes, n_cond, bias, 0, mask)
-
-    # Scrittura delle condizioni su file
-    write_out(condizioni_iniziali, n_genes, n_cond)
-
-    return True
-
 
 if __name__ == '__main__':
     

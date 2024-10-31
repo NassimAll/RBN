@@ -23,12 +23,12 @@ per ogni nodo diverso in cui viene posto il rumore
 '''
 
 dir =  os.getcwd()
-path = os.path.join(dir, f"RISULTATI_200") 
+path = os.path.join(dir, f"MG4") 
 #output_dir = dir + "/resultMG1/"
-res_file = os.path.join(path,"MG2_200")
+res_file = os.path.join(path,"MG4__")
 analisi_path = os.path.join(dir, "analisi_nodi.txt")
-N_reti = 1
-n = 200
+N_reti = 15
+n = 20
 #PARAMETRI MOTORE
 n_steps = 500
 mode = 2
@@ -103,10 +103,10 @@ if __name__ == '__main__':
 
     #DEFINIAMO QUI I PARAMETRI PER EVITARE UNA CONTINUA LETTURA DEL FILE
     n_nodi = n
-    k_minimo = 2
-    k_massimo = 2
+    k_minimo = 3
+    k_massimo = 3
     probabilita_k = [1.0]
-    bias = [0.5]
+    bias = [0.14]
     n_cond = 1000
     mask = [2] * n_nodi
 
@@ -121,28 +121,28 @@ if __name__ == '__main__':
             raise ValueError('Si è verificato un errore con la generazione del grafo')
 
         print("GRAFO OK")
-        shutil.copy(os.path.join(dir,'grafo.txt'), os.path.join(path,f'grafo_{i}.txt')) #salvo il grafo
+        shutil.copy(os.path.join(dir,'grafo.txt'), os.path.join(path,f'grafo_{i+36}.txt')) #salvo il grafo
 
         #GENERARE LE CONDIZIONI INIZIALI - Input fisso nel file
         if not main_initcond(n_nodi, n_cond, 0.5, mask):
             raise ValueError('Si è verificato un errore con la generazione delle condizioni iniziali')
 
         print("CONDIZIONI INIZIALI OK")
-        shutil.copy(os.path.join(dir,'condizioni_iniziali.txt'), os.path.join(path,f'condizioni_iniziali_{i}.txt'))
+        shutil.copy(os.path.join(dir,'condizioni_iniziali.txt'), os.path.join(path,f'condizioni_iniziali_{i+36}.txt'))
 
        #INIZIO SIMULAZIONI
-        file_name = res_file + f"_R{i}_res.txt"
-        write_intestazione(file_name, f"RETE {i} - rumore = 0.02 \n")
+        file_name = res_file + f"R{i+36}_res.txt"
+        write_intestazione(file_name, f"RETE {i+36} - rumore = 0.02 \n")
         simulate_with_noise(file_name, 0.02)
         print(f"FINE 0.02")
-        write_intestazione(file_name, f"RETE {i} - rumore = 0.1 \n")
+        write_intestazione(file_name, f"RETE {i+36} - rumore = 0.1 \n")
         simulate_with_noise(file_name, 0.1)
         print(f"FINE 0.1")
-        write_intestazione(file_name, f"RETE {i} - rumore = 0.2 \n")
+        write_intestazione(file_name, f"RETE {i+36} - rumore = 0.2 \n")
         simulate_with_noise(file_name, 0.2)
         print(f"FINE  0.2")
-        write_intestazione(file_name, f"RETE {i} - rumore = 0.5 \n")
+        write_intestazione(file_name, f"RETE {i+36} - rumore = 0.5 \n")
         simulate_with_noise(file_name, 0.5)
 
-        print(f"FINE RETE {i}")
+        print(f"FINE RETE {i+36}")
 

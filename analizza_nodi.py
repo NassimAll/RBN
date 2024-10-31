@@ -159,22 +159,6 @@ def write_fin(fin):
             file.write(f"{" ".join(str(x) for x in fin[line, :])}\n")
         file.write("\n")
 
-def main_analisi_for_MG1(fin, n_steps):
-
-     #Remove dei file per stampare i nuovi risultati
-    if os.path.exists(out_fin) and os.path.exists(out_res): 
-        os.remove(out_fin) 
-        os.remove(out_res) 
-    
-    #Leggere le traiettorie del motore - lista traiettoria per ogni cond init
-    traiettorie = get_traiettorie(n_steps + 1) # n_steps + 1 perche per ogni condizinone si deve considerare la prima cond iniziale
-
-    #FASE DI ANALISI
-    results = analyze_all(traiettorie, fin)
-
-    #Stampa risultati su file
-    write_results(results)
-
 if __name__ == '__main__':
 
     #Remove dei file per stampare i nuovi risultati
