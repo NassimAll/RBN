@@ -1,17 +1,59 @@
-# RBN - Random boolean network 
+# RBN - Random Boolean Network
 
-Progetto composto da 3 file: 
+Python tool per la creazione e simulazione di modelli di Reti Booleane Casuali (RBN).
 
-- generatore.py: questo file genera la rete booleana leggendo le caratteristiche dal file input nella sua apposita cartella. Lo script genera il grafo su due file differenti, uno in formato json e uno in formato testuale
-- generatore_initcond.py: leggendo sempre da input i suoi parametri genera una lista di condizioni iniziali 
-- motore.py: il motore effettua la simulazione su 3 modalità differenti e genera a seconda di essi un output. 
-- RBN_rapporto
-- espandi_attrattori.py: dati gli attrattori trovati li espande trovando la traiettoria di ciascuno 
+## Descrizione del Progetto
 
-Simulatore che tiene conto del rumore, è stata eseguita una modifica su determinati file per tenere conto di possibili perturbazioni nella simulazione:
-- motore_rumors.py: modificando gli input inserendo una lista di soglie di rumore per ogni nodo 
-- analizza_nodi.py: passando da linea di comando il valore della finestra lo script preleva per ogni traiettoria una finestra (a partire dal fondo). Di questa finestra vengono analizzati i singoli nodi in modo da dedurre il loro comportamento. 
+Questo progetto contiene una serie di script per generare, simulare e analizzare modelli di RBN. Ogni script ha uno scopo specifico e produce un output utilizzato dagli script successivi. Esegui gli script nell'ordine elencato per ottenere i risultati desiderati.
 
-I file di input per ogni script sono contenuti nella relatica cartella input, e gli output invece sono nella relativa cartella output. 
+---
 
-Per ogni script i percorsi dei file di sono definiti all'inizio e sono inseriti in modo da funzionare su ogni macchina
+## Struttura del Progetto
+
+### 1. Generazione della Rete e delle Condizioni Iniziali
+
+- **`generatore.py`**  
+  Crea la rete booleana basandosi sui parametri definiti in un file di configurazione. Genera il grafo in formato `.txt`.
+
+- **`generatore_initcond.py`**  
+  Genera una lista di condizioni iniziali secondo i parametri specificati nel file di configurazione.
+
+### 2. Simulazione della Rete
+
+- **`motore.py`**  
+  Esegue la simulazione della rete utilizzando i parametri iniziali e offre diverse modalità di output:
+  - **mode = 1**: Esegue la simulazione per ogni condizione iniziale e restituisce solo lo stato finale.
+  - **mode = 2**: Esegue la simulazione per ogni condizione iniziale e restituisce l'intera traiettoria.
+  - **mode = 3**: Esegue la simulazione per ogni condizione iniziale e restituisce i nomi degli attrattori rilevati.
+
+- **`RBN_rapporto`**  
+  Genera un rapporto dettagliato degli attrattori identificati nelle simulazioni.
+
+- **`espandi_attrattori.py`**  
+  Prende in input gli attrattori trovati e ne espande la traiettoria completa per ciascuno.
+
+---
+
+## Versione con Rumore
+
+Questa versione del simulatore include modifiche per tenere conto delle perturbazioni (rumore) sui nodi durante la simulazione.
+
+- **`motore_rumors.py`**  
+  Una versione del motore che accetta una lista di soglie di rumore, specificata per ogni nodo.
+
+- **`analizza_nodi.py`**  
+  Analizza il comportamento dei nodi in una finestra di tempo specificata. Da eseguire con il comando:
+  ```
+  bash
+  python analizza_nodi.py <finestra>
+  ```
+
+
+---
+
+## Utilizzo
+
+Per l'utilizzo scaricare il progetto e tenere in cosiderazione che:
+
+- I file di input per ciascuno script devono trovarsi nella stessa directory degli script.
+- I file di output vengono generati nella stessa directory.
